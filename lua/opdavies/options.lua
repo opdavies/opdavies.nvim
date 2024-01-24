@@ -119,6 +119,7 @@ local function set_vim_o()
     autoindent = true,
     backup = false,
     breakindent = true,
+    colorcolumn = "80",
     conceallevel = 0,
     cursorline = true,
     expandtab = true,
