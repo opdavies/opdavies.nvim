@@ -72,6 +72,7 @@ local servers = {
   bashls = true,
   cssls = true,
   gopls = true,
+  grammarly = true,
   html = true,
   rnix = true,
   terraformls = true,

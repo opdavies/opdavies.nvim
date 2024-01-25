@@ -252,6 +252,7 @@ rec {
       nodePackages."@tailwindcss/language-server"
       nodePackages.bash-language-server
       nodePackages.dockerfile-language-server-nodejs
+      nodePackages.grammarly-languageserver
       nodePackages.intelephense
       nodePackages.typescript-language-server
       nodePackages.vls
