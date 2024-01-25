@@ -1,26 +1,23 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = inputs@{ flake-parts, self, ... }:
+  outputs = inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      flake = {
+        lib = import ./lib { inherit inputs; };
+      };
+
       systems = [ "x86_64-linux" ];
 
-      perSystem = { pkgs, self', ... }: {
-        packages = {
-          default = pkgs.vimUtils.buildVimPlugin {
-            name = "opdavies";
-            postInstall = ''
-              rm $out/.envrc
-              rm $out/flake.lock
-              rm $out/flake.nix
-              rm $out/run
-              rm $out/stylua.toml
-            '';
-            src = ./.;
-          };
-        };
+      perSystem = { pkgs, self', system, ... }:
+        let
+          default = self.lib.mkVimPlugin { inherit system; };
+          neovim = self.lib.mkNeovim { inherit system; };
+        in
+        {
+          packages = { inherit default neovim; };
 
-        formatter = pkgs.nixpkgs-fmt;
-      };
-  };
+          formatter = pkgs.nixpkgs-fmt;
+        };
+    };
 }
