@@ -13,6 +13,7 @@
               rm $out/.envrc
               rm $out/flake.lock
               rm $out/flake.nix
+              rm $out/run
               rm $out/stylua.toml
             '';
             src = ./.;
