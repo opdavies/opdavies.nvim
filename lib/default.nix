@@ -14,6 +14,7 @@ rec {
       name = "opdavies";
       postInstall = ''
         rm -rf $out/.envrc
+        rm -rf $out/CHANGELOG.md
         rm -rf $out/flake.lock
         rm -rf $out/flake.nix
         rm -rf $out/lib
