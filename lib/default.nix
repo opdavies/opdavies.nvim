@@ -228,6 +228,9 @@ rec {
       # Themes
       vimPlugins.catppuccin-nvim
 
+      # Wiki
+      vimPlugins.vimwiki
+
       # Configuration.
       opdavies-nvim
     ];
