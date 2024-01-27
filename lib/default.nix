@@ -278,6 +278,9 @@ rec {
 
       # Tools
       pkgs.html-tidy
+      pkgs.lazygit
+      pkgs.lazydocker
+      pkgs.nnn
       pkgs.nodePackages.markdownlint-cli
       pkgs.proselint
       pkgs.shellcheck
