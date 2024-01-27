@@ -68,7 +68,6 @@ end
 
 local servers = {
   ansiblels = true,
-  astro = true,
   bashls = true,
   cssls = true,
   gopls = true,
@@ -95,6 +94,7 @@ local servers = {
 
   tailwindcss = {
     filetypes = { "html", "html.twig", "javascript", "typescript", "vue" },
+
     init_options = {
       userLanguages = {
         ["html.twig"] = "html",

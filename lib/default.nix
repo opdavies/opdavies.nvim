@@ -105,7 +105,6 @@ rec {
       customVim.vim-heritage
       customVim.vim-textobj-xmlattr
       customVim.vim-zoom
-      vimPlugins.vim-astro
       vimPlugins.vim-visual-star-search
 
       # {
@@ -251,7 +250,6 @@ rec {
       pkgs.php81
 
       # Language servers
-      nodePackages."@astrojs/language-server"
       nodePackages."@tailwindcss/language-server"
       nodePackages.bash-language-server
       nodePackages.dockerfile-language-server-nodejs
