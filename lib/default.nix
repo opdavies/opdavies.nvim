@@ -215,6 +215,8 @@ rec {
       vimPlugins.vim-dadbod-ui
       vimPlugins.vim-dadbod-completion
 
+      vimPlugins.vim-floaterm
+
       # # Markdown
       # {
       #   plugin = vimPlugins.markdown-preview-nvim;
