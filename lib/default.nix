@@ -36,6 +36,16 @@ rec {
       });
 
       customVim = {
+        tabline-vim = pkgs.vimUtils.buildVimPlugin {
+          name = "tabline-vim";
+          src = pkgs.fetchFromGitHub {
+            owner = "mkitt";
+            repo = "tabline.vim";
+            rev = "69c9698a3240860adaba93615f44778a9ab724b4";
+            sha256 = "51b8PxyKqBdeIvmmZyF2hpMBjkyrlZDdTB1opr5JZ7Y=";
+          };
+        };
+
         toggle-checkbox-nvim = pkgs.vimUtils.buildVimPlugin {
           name = "toggle-checkbox-nvim";
           src = pkgs.fetchFromGitHub {
@@ -43,6 +53,16 @@ rec {
             repo = "toggle-checkbox.nvim";
             rev = "main";
             sha256 = "4YSEagQnLK5MBl2z53e6sOBlCDm220GYVlc6A+HNywg=";
+          };
+        };
+
+        vim-caser = pkgs.vimUtils.buildVimPlugin {
+          name = "vim-caser";
+          src = pkgs.fetchFromGitHub {
+            owner = "arthurxavierx";
+            repo = "vim-caser";
+            rev = "6bc9f41d170711c58e0157d882a5fe8c30f34bf6";
+            sha256 = "PXAY01O/cHvAdWx3V/pyWFeiV5qJGvLcAKhl5DQc0Ps=";
           };
         };
 
@@ -63,26 +83,6 @@ rec {
             repo = "vim-textobj-xmlattr";
             rev = "694a297f1d75fd527e87da9769f3c6519a87ebb1";
             sha256 = "+91FVP95oh00flINdltqx6qJuijYo56tHIh3J098G2Q=";
-          };
-        };
-
-        tabline-vim = pkgs.vimUtils.buildVimPlugin {
-          name = "tabline-vim";
-          src = pkgs.fetchFromGitHub {
-            owner = "mkitt";
-            repo = "tabline.vim";
-            rev = "69c9698a3240860adaba93615f44778a9ab724b4";
-            sha256 = "51b8PxyKqBdeIvmmZyF2hpMBjkyrlZDdTB1opr5JZ7Y=";
-          };
-        };
-
-        vim-caser = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-caser";
-          src = pkgs.fetchFromGitHub {
-            owner = "arthurxavierx";
-            repo = "vim-caser";
-            rev = "6bc9f41d170711c58e0157d882a5fe8c30f34bf6";
-            sha256 = "PXAY01O/cHvAdWx3V/pyWFeiV5qJGvLcAKhl5DQc0Ps=";
           };
         };
 
