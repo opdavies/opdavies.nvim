@@ -101,9 +101,20 @@ local function set_key_mappings()
   vmap { "<M-j>", ":m '>+1<CR>gv=gv", opts }
   vmap { "<M-k>", ":m '<-2<CR>gv=gv", opts }
 
-  -- Move half a screen up or down and re-center.
-  nmap { "<C-d>", "<C-d>zz" }
-  nmap { "<C-u>", "<C-u>zz" }
+  -- Re-centre when navigating.
+  vim.keymap.set("n", "#", "#zz", opts)
+  vim.keymap.set("n", "%", "%zz", opts)
+  vim.keymap.set("n", "*", "*zz", opts)
+  vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+  vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+  vim.keymap.set("n", "<C-i>", "<C-i>zz", opts)
+  vim.keymap.set("n", "<C-o>", "<C-o>zz", opts)
+  vim.keymap.set("n", "G", "Gzz", opts)
+  vim.keymap.set("n", "N", "Nzz", opts)
+  vim.keymap.set("n", "gg", "ggzz", opts)
+  vim.keymap.set("n", "n", "Nzz", opts)
+  vim.keymap.set("n", "{", "{zz", opts)
+  vim.keymap.set("n", "}", "}zz", opts)
 end
 
 local function set_highlights()
