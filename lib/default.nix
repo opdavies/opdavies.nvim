@@ -25,7 +25,7 @@ rec {
       src = ../.;
     };
 
-  mkNeovimPlugins = { system, }:
+  mkNeovimPlugins = { system }:
     let
       inherit (pkgs) vimPlugins;
 
