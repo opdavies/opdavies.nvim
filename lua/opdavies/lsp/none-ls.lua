@@ -11,6 +11,7 @@ null_ls.setup {
   sources = {
     code_actions.gitsigns,
 
+    formatting.alejandra,
     formatting.black,
     formatting.markdownlint,
     formatting.phpcbf.with {

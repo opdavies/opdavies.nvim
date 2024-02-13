@@ -1,15 +1,11 @@
-{ inputs }:
-
-let
+{inputs}: let
   inherit (inputs.nixpkgs) legacyPackages;
-in
-rec {
-  mkVimPlugin = { system }:
-    let
-      inherit (pkgs) vimUtils;
-      inherit (vimUtils) buildVimPlugin;
-      pkgs = legacyPackages.${system};
-    in
+in rec {
+  mkVimPlugin = {system}: let
+    inherit (pkgs) vimUtils;
+    inherit (vimUtils) buildVimPlugin;
+    pkgs = legacyPackages.${system};
+  in
     buildVimPlugin {
       name = "opdavies";
       postInstall = ''
@@ -25,266 +21,263 @@ rec {
       src = ../.;
     };
 
-  mkNeovimPlugins = { system }:
-    let
-      inherit (pkgs) vimPlugins;
+  mkNeovimPlugins = {system}: let
+    inherit (pkgs) vimPlugins;
 
-      pkgs = (import inputs.nixpkgs {
-        inherit system;
+    pkgs = import inputs.nixpkgs {
+      inherit system;
 
-        config.allowUnfree = true;
-      });
+      config.allowUnfree = true;
+    };
 
-      customVim = {
-        tabline-vim = pkgs.vimUtils.buildVimPlugin {
-          name = "tabline-vim";
-          src = pkgs.fetchFromGitHub {
-            owner = "mkitt";
-            repo = "tabline.vim";
-            rev = "69c9698a3240860adaba93615f44778a9ab724b4";
-            sha256 = "51b8PxyKqBdeIvmmZyF2hpMBjkyrlZDdTB1opr5JZ7Y=";
-          };
-        };
-
-        toggle-checkbox-nvim = pkgs.vimUtils.buildVimPlugin {
-          name = "toggle-checkbox-nvim";
-          src = pkgs.fetchFromGitHub {
-            owner = "opdavies";
-            repo = "toggle-checkbox.nvim";
-            rev = "main";
-            sha256 = "4YSEagQnLK5MBl2z53e6sOBlCDm220GYVlc6A+HNywg=";
-          };
-        };
-
-        vim-caser = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-caser";
-          src = pkgs.fetchFromGitHub {
-            owner = "arthurxavierx";
-            repo = "vim-caser";
-            rev = "6bc9f41d170711c58e0157d882a5fe8c30f34bf6";
-            sha256 = "PXAY01O/cHvAdWx3V/pyWFeiV5qJGvLcAKhl5DQc0Ps=";
-          };
-        };
-
-        vim-heritage = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-heritage";
-          src = pkgs.fetchFromGitHub {
-            owner = "jessarcher";
-            repo = "vim-heritage";
-            rev = "cffa05c78c0991c998adc4504d761b3068547db6";
-            sha256 = "Lebe5V1XFxn4kSZ+ImZ69Vst9Nbc0N7eA9IzOCijFS0=";
-          };
-        };
-
-        vim-textobj-xmlattr = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-textobj-xmlattr";
-          src = pkgs.fetchFromGitHub {
-            owner = "whatyouhide";
-            repo = "vim-textobj-xmlattr";
-            rev = "694a297f1d75fd527e87da9769f3c6519a87ebb1";
-            sha256 = "+91FVP95oh00flINdltqx6qJuijYo56tHIh3J098G2Q=";
-          };
-        };
-
-        vim-zoom = pkgs.vimUtils.buildVimPlugin {
-          name = "vim-zoom";
-          src = pkgs.fetchFromGitHub {
-            owner = "dhruvasagar";
-            repo = "vim-zoom";
-            rev = "01c737005312c09e0449d6518decf8cedfee32c7";
-            sha256 = "/ADzScsG0u6RJbEtfO23Gup2NYdhPkExqqOPVcQa7aQ=";
-          };
+    customVim = {
+      tabline-vim = pkgs.vimUtils.buildVimPlugin {
+        name = "tabline-vim";
+        src = pkgs.fetchFromGitHub {
+          owner = "mkitt";
+          repo = "tabline.vim";
+          rev = "69c9698a3240860adaba93615f44778a9ab724b4";
+          sha256 = "51b8PxyKqBdeIvmmZyF2hpMBjkyrlZDdTB1opr5JZ7Y=";
         };
       };
 
-      opdavies-nvim = mkVimPlugin { inherit system; };
-    in
-    [
-      customVim.tabline-vim
-      customVim.vim-caser
-      customVim.vim-heritage
-      customVim.vim-textobj-xmlattr
-      customVim.vim-zoom
-      vimPlugins.vim-visual-star-search
+      toggle-checkbox-nvim = pkgs.vimUtils.buildVimPlugin {
+        name = "toggle-checkbox-nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "opdavies";
+          repo = "toggle-checkbox.nvim";
+          rev = "main";
+          sha256 = "4YSEagQnLK5MBl2z53e6sOBlCDm220GYVlc6A+HNywg=";
+        };
+      };
 
-      # {
-      #   plugin = customVim.toggle-checkbox-nvim;
-      #   type = "lua";
-      #   config = ''
-      #     vim.keymap.set("n", "<leader>t", ":lua require('toggle-checkbox').toggle()<CR>")
-      #   '';
-      # }
+      vim-caser = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-caser";
+        src = pkgs.fetchFromGitHub {
+          owner = "arthurxavierx";
+          repo = "vim-caser";
+          rev = "6bc9f41d170711c58e0157d882a5fe8c30f34bf6";
+          sha256 = "PXAY01O/cHvAdWx3V/pyWFeiV5qJGvLcAKhl5DQc0Ps=";
+        };
+      };
 
-      vimPlugins.harpoon
-      vimPlugins.refactoring-nvim
-      vimPlugins.comment-nvim
-      vimPlugins.dial-nvim
-      vimPlugins.gitsigns-nvim
-      vimPlugins.impatient-nvim
-      vimPlugins.nvim-web-devicons
-      vimPlugins.rest-nvim
-      vimPlugins.undotree
-      vimPlugins.vim-easy-align
-      vimPlugins.vim-eunuch
-      vimPlugins.vim-highlightedyank
-      vimPlugins.vim-nix
-      vimPlugins.vim-obsession
-      vimPlugins.vim-pasta
-      vimPlugins.vim-polyglot
-      vimPlugins.vim-projectionist
-      vimPlugins.vim-repeat
-      vimPlugins.vim-sleuth
-      vimPlugins.vim-surround
-      vimPlugins.vim-terraform
-      vimPlugins.vim-textobj-user
-      vimPlugins.vim-tmux-navigator
-      vimPlugins.vim-unimpaired
+      vim-heritage = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-heritage";
+        src = pkgs.fetchFromGitHub {
+          owner = "jessarcher";
+          repo = "vim-heritage";
+          rev = "cffa05c78c0991c998adc4504d761b3068547db6";
+          sha256 = "Lebe5V1XFxn4kSZ+ImZ69Vst9Nbc0N7eA9IzOCijFS0=";
+        };
+      };
 
-      vimPlugins.lualine-nvim
+      vim-textobj-xmlattr = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-textobj-xmlattr";
+        src = pkgs.fetchFromGitHub {
+          owner = "whatyouhide";
+          repo = "vim-textobj-xmlattr";
+          rev = "694a297f1d75fd527e87da9769f3c6519a87ebb1";
+          sha256 = "+91FVP95oh00flINdltqx6qJuijYo56tHIh3J098G2Q=";
+        };
+      };
 
-      # {
-      #   plugin = vimPlugins.vim-sort-motion;
-      #   type = "lua";
-      #   config = ''
-      #     vim.g.sort_motion_flags = "ui"
-      #   '';
-      # }
-      # {
-      #   plugin = vimPlugins.treesj;
-      #   type = "lua";
-      #   config = ''
-      #     require "treesj".setup {}
-      #   '';
-      # }
-      vimPlugins.vim-sort-motion
-      vimPlugins.treesj
+      vim-zoom = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-zoom";
+        src = pkgs.fetchFromGitHub {
+          owner = "dhruvasagar";
+          repo = "vim-zoom";
+          rev = "01c737005312c09e0449d6518decf8cedfee32c7";
+          sha256 = "/ADzScsG0u6RJbEtfO23Gup2NYdhPkExqqOPVcQa7aQ=";
+        };
+      };
+    };
 
-      # Testing
-      vimPlugins.vim-test
+    opdavies-nvim = mkVimPlugin {inherit system;};
+  in [
+    customVim.tabline-vim
+    customVim.vim-caser
+    customVim.vim-heritage
+    customVim.vim-textobj-xmlattr
+    customVim.vim-zoom
+    vimPlugins.vim-visual-star-search
 
-      # Git
-      vimPlugins.vim-fugitive
-      vimPlugins.vim-rhubarb
+    # {
+    #   plugin = customVim.toggle-checkbox-nvim;
+    #   type = "lua";
+    #   config = ''
+    #     vim.keymap.set("n", "<leader>t", ":lua require('toggle-checkbox').toggle()<CR>")
+    #   '';
+    # }
 
-      # Debugging
-      vimPlugins.nvim-dap
-      vimPlugins.nvim-dap-ui
-      vimPlugins.nvim-dap-virtual-text
+    vimPlugins.harpoon
+    vimPlugins.refactoring-nvim
+    vimPlugins.comment-nvim
+    vimPlugins.dial-nvim
+    vimPlugins.gitsigns-nvim
+    vimPlugins.impatient-nvim
+    vimPlugins.nvim-web-devicons
+    vimPlugins.rest-nvim
+    vimPlugins.undotree
+    vimPlugins.vim-easy-align
+    vimPlugins.vim-eunuch
+    vimPlugins.vim-highlightedyank
+    vimPlugins.vim-nix
+    vimPlugins.vim-obsession
+    vimPlugins.vim-pasta
+    vimPlugins.vim-polyglot
+    vimPlugins.vim-projectionist
+    vimPlugins.vim-repeat
+    vimPlugins.vim-sleuth
+    vimPlugins.vim-surround
+    vimPlugins.vim-terraform
+    vimPlugins.vim-textobj-user
+    vimPlugins.vim-tmux-navigator
+    vimPlugins.vim-unimpaired
 
-      # Treesitter
-      vimPlugins.nvim-treesitter.withAllGrammars
-      vimPlugins.nvim-treesitter-context
-      vimPlugins.nvim-treesitter-textobjects
+    vimPlugins.lualine-nvim
 
-      # LSP, linting and formatting
-      vimPlugins.conform-nvim
-      vimPlugins.lsp-status-nvim
-      vimPlugins.none-ls-nvim
-      vimPlugins.nvim-lspconfig
+    # {
+    #   plugin = vimPlugins.vim-sort-motion;
+    #   type = "lua";
+    #   config = ''
+    #     vim.g.sort_motion_flags = "ui"
+    #   '';
+    # }
+    # {
+    #   plugin = vimPlugins.treesj;
+    #   type = "lua";
+    #   config = ''
+    #     require "treesj".setup {}
+    #   '';
+    # }
+    vimPlugins.vim-sort-motion
+    vimPlugins.treesj
 
-      # Completion
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-cmdline
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-nvim-lsp-signature-help
-      vimPlugins.cmp-path
-      vimPlugins.cmp-tabnine
-      vimPlugins.cmp-treesitter
-      vimPlugins.cmp-vsnip
-      vimPlugins.cmp_luasnip
-      vimPlugins.lspkind-nvim
-      vimPlugins.nvim-cmp
-      vimPlugins.phpactor
+    # Testing
+    vimPlugins.vim-test
 
-      # Snippets
-      vimPlugins.friendly-snippets
-      vimPlugins.luasnip
+    # Git
+    vimPlugins.vim-fugitive
+    vimPlugins.vim-rhubarb
 
-      # Telescope
-      vimPlugins.plenary-nvim
-      vimPlugins.popup-nvim
-      vimPlugins.telescope-file-browser-nvim
-      vimPlugins.telescope-frecency-nvim
-      vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.telescope-live-grep-args-nvim
-      vimPlugins.telescope-nvim
-      vimPlugins.telescope-ui-select-nvim
+    # Debugging
+    vimPlugins.nvim-dap
+    vimPlugins.nvim-dap-ui
+    vimPlugins.nvim-dap-virtual-text
 
-      # Databases
-      vimPlugins.vim-dadbod
-      vimPlugins.vim-dadbod-ui
-      vimPlugins.vim-dadbod-completion
+    # Treesitter
+    vimPlugins.nvim-treesitter.withAllGrammars
+    vimPlugins.nvim-treesitter-context
+    vimPlugins.nvim-treesitter-textobjects
 
-      vimPlugins.vim-floaterm
+    # LSP, linting and formatting
+    vimPlugins.conform-nvim
+    vimPlugins.lsp-status-nvim
+    vimPlugins.none-ls-nvim
+    vimPlugins.nvim-lspconfig
 
-      # # Markdown
-      # {
-      #   plugin = vimPlugins.markdown-preview-nvim;
-      #   type = "lua";
-      #   config = ''
-      #     vim.g.mkdp_refresh_slow = 1
-      #   '';
-      # }
+    # Completion
+    vimPlugins.cmp-buffer
+    vimPlugins.cmp-cmdline
+    vimPlugins.cmp-nvim-lsp
+    vimPlugins.cmp-nvim-lsp-signature-help
+    vimPlugins.cmp-path
+    vimPlugins.cmp-tabnine
+    vimPlugins.cmp-treesitter
+    vimPlugins.cmp-vsnip
+    vimPlugins.cmp_luasnip
+    vimPlugins.lspkind-nvim
+    vimPlugins.nvim-cmp
+    vimPlugins.phpactor
 
-      # Themes
-      vimPlugins.catppuccin-nvim
+    # Snippets
+    vimPlugins.friendly-snippets
+    vimPlugins.luasnip
 
-      # Wiki
-      vimPlugins.vimwiki
+    # Telescope
+    vimPlugins.plenary-nvim
+    vimPlugins.popup-nvim
+    vimPlugins.telescope-file-browser-nvim
+    vimPlugins.telescope-frecency-nvim
+    vimPlugins.telescope-fzf-native-nvim
+    vimPlugins.telescope-live-grep-args-nvim
+    vimPlugins.telescope-nvim
+    vimPlugins.telescope-ui-select-nvim
 
-      # Configuration.
-      opdavies-nvim
-    ];
+    # Databases
+    vimPlugins.vim-dadbod
+    vimPlugins.vim-dadbod-ui
+    vimPlugins.vim-dadbod-completion
 
-  mkExtraPackages = { system }:
-    let
-      inherit (pkgs) nodePackages;
+    vimPlugins.vim-floaterm
 
-      pkgs = (import inputs.nixpkgs {
-        inherit system;
+    # # Markdown
+    # {
+    #   plugin = vimPlugins.markdown-preview-nvim;
+    #   type = "lua";
+    #   config = ''
+    #     vim.g.mkdp_refresh_slow = 1
+    #   '';
+    # }
 
-        config.allowUnfree = true;
-      });
-    in
-    [
-      # Languages
-      nodePackages.typescript
-      pkgs.php81
+    # Themes
+    vimPlugins.catppuccin-nvim
 
-      # Language servers
-      nodePackages."@tailwindcss/language-server"
-      nodePackages.bash-language-server
-      nodePackages.dockerfile-language-server-nodejs
-      nodePackages.grammarly-languageserver
-      nodePackages.intelephense
-      nodePackages.typescript-language-server
-      nodePackages.vls
-      nodePackages.volar
-      nodePackages.vscode-langservers-extracted
-      nodePackages.vue-language-server
-      nodePackages.yaml-language-server
-      pkgs.ansible-language-server
-      pkgs.gopls
-      pkgs.lua-language-server
-      pkgs.nixd
-      pkgs.phpactor
-      pkgs.rnix-lsp
-      pkgs.terraform-ls
+    # Wiki
+    vimPlugins.vimwiki
 
-      # Formatters
-      pkgs.black
-      pkgs.nodePackages.prettier
-      pkgs.stylua
+    # Configuration.
+    opdavies-nvim
+  ];
 
-      # Tools
-      pkgs.html-tidy
-      pkgs.lazygit
-      pkgs.lazydocker
-      pkgs.nnn
-      pkgs.nodePackages.markdownlint-cli
-      pkgs.proselint
-      pkgs.shellcheck
-    ];
+  mkExtraPackages = {system}: let
+    inherit (pkgs) nodePackages;
+
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+
+      config.allowUnfree = true;
+    };
+  in [
+    # Languages
+    nodePackages.typescript
+    pkgs.php81
+
+    # Language servers
+    nodePackages."@tailwindcss/language-server"
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.grammarly-languageserver
+    nodePackages.intelephense
+    nodePackages.typescript-language-server
+    nodePackages.vls
+    nodePackages.volar
+    nodePackages.vscode-langservers-extracted
+    nodePackages.vue-language-server
+    nodePackages.yaml-language-server
+    pkgs.ansible-language-server
+    pkgs.gopls
+    pkgs.lua-language-server
+    pkgs.nixd
+    pkgs.phpactor
+    pkgs.rnix-lsp
+    pkgs.terraform-ls
+
+    # Formatters
+    pkgs.alejandra
+    pkgs.black
+    pkgs.nodePackages.prettier
+    pkgs.stylua
+
+    # Tools
+    pkgs.html-tidy
+    pkgs.lazygit
+    pkgs.lazydocker
+    pkgs.nnn
+    pkgs.nodePackages.markdownlint-cli
+    pkgs.proselint
+    pkgs.shellcheck
+  ];
 
   mkExtraConfig = ''
     lua << EOF
@@ -292,31 +285,28 @@ rec {
     EOF
   '';
 
-  mkNeovim = { system }:
-    let
-      inherit (pkgs) lib neovim;
-      extraPackages = mkExtraPackages { inherit system; };
-      pkgs = legacyPackages.${system};
-      start = mkNeovimPlugins { inherit system; };
-    in
+  mkNeovim = {system}: let
+    inherit (pkgs) lib neovim;
+    extraPackages = mkExtraPackages {inherit system;};
+    pkgs = legacyPackages.${system};
+    start = mkNeovimPlugins {inherit system;};
+  in
     neovim.override {
       configure = {
         customRC = mkExtraConfig;
-        packages.main = { inherit start; };
+        packages.main = {inherit start;};
       };
 
       extraMakeWrapperArgs = ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
     };
 
-  mkHomeManager = { system }:
-    let
-      extraConfig = mkExtraConfig;
-      extraPackages = mkExtraPackages { inherit system; };
-      plugins = mkNeovimPlugins { inherit system; };
-    in
-    {
-      inherit extraConfig extraPackages plugins;
+  mkHomeManager = {system}: let
+    extraConfig = mkExtraConfig;
+    extraPackages = mkExtraPackages {inherit system;};
+    plugins = mkNeovimPlugins {inherit system;};
+  in {
+    inherit extraConfig extraPackages plugins;
 
-      enable = true;
-    };
+    enable = true;
+  };
 }
