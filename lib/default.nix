@@ -99,7 +99,6 @@ in rec {
     customVim.vim-heritage
     customVim.vim-textobj-xmlattr
     customVim.vim-zoom
-    vimPlugins.vim-visual-star-search
 
     # {
     #   plugin = customVim.toggle-checkbox-nvim;
@@ -122,6 +121,7 @@ in rec {
     vimPlugins.vim-eunuch
     vimPlugins.vim-highlightedyank
     vimPlugins.vim-nix
+    vimPlugins.vim-just
     vimPlugins.vim-obsession
     vimPlugins.vim-pasta
     vimPlugins.vim-polyglot
@@ -133,6 +133,7 @@ in rec {
     vimPlugins.vim-textobj-user
     vimPlugins.vim-tmux-navigator
     vimPlugins.vim-unimpaired
+    vimPlugins.vim-visual-star-search
 
     vimPlugins.lualine-nvim
 
