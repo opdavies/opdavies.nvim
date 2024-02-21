@@ -108,6 +108,7 @@ in rec {
     #   '';
     # }
 
+    vimPlugins.fidget-nvim
     vimPlugins.harpoon
     vimPlugins.refactoring-nvim
     vimPlugins.comment-nvim
