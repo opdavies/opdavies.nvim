@@ -4,6 +4,7 @@ in rec {
   mkVimPlugin = {system}: let
     inherit (pkgs) vimUtils;
     inherit (vimUtils) buildVimPlugin;
+
     pkgs = legacyPackages.${system};
   in
     buildVimPlugin {
@@ -11,9 +12,11 @@ in rec {
       postInstall = ''
         rm -rf $out/.envrc
         rm -rf $out/.gitignore
+        rm -rf $out/.luacheckrc
         rm -rf $out/CHANGELOG.md
         rm -rf $out/flake.lock
         rm -rf $out/flake.nix
+        rm -rf $out/justfile
         rm -rf $out/lib
         rm -rf $out/run
         rm -rf $out/stylua.toml
@@ -22,13 +25,15 @@ in rec {
     };
 
   mkNeovimPlugins = {system}: let
-    inherit (pkgs) vimPlugins;
+    inherit (pkgs) php82Packages vimPlugins;
 
     pkgs = import inputs.nixpkgs {
       inherit system;
 
       config.allowUnfree = true;
     };
+
+    pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
 
     customVim = {
       tabline-vim = pkgs.vimUtils.buildVimPlugin {
@@ -38,16 +43,6 @@ in rec {
           repo = "tabline.vim";
           rev = "69c9698a3240860adaba93615f44778a9ab724b4";
           sha256 = "51b8PxyKqBdeIvmmZyF2hpMBjkyrlZDdTB1opr5JZ7Y=";
-        };
-      };
-
-      toggle-checkbox-nvim = pkgs.vimUtils.buildVimPlugin {
-        name = "toggle-checkbox-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "opdavies";
-          repo = "toggle-checkbox.nvim";
-          rev = "main";
-          sha256 = "4YSEagQnLK5MBl2z53e6sOBlCDm220GYVlc6A+HNywg=";
         };
       };
 
@@ -100,43 +95,31 @@ in rec {
     customVim.vim-textobj-xmlattr
     customVim.vim-zoom
 
-    # {
-    #   plugin = customVim.toggle-checkbox-nvim;
-    #   type = "lua";
-    #   config = ''
-    #     vim.keymap.set("n", "<leader>t", ":lua require('toggle-checkbox').toggle()<CR>")
-    #   '';
-    # }
-
-    vimPlugins.fidget-nvim
-    vimPlugins.harpoon
-    vimPlugins.refactoring-nvim
     vimPlugins.comment-nvim
     vimPlugins.dial-nvim
+    vimPlugins.fidget-nvim
     vimPlugins.gitsigns-nvim
+    vimPlugins.harpoon
     vimPlugins.impatient-nvim
+    vimPlugins.mini-nvim
+    vimPlugins.neodev-nvim
     vimPlugins.nvim-web-devicons
+    vimPlugins.refactoring-nvim
     vimPlugins.rest-nvim
     vimPlugins.undotree
-    vimPlugins.vim-easy-align
     vimPlugins.vim-eunuch
     vimPlugins.vim-highlightedyank
-    vimPlugins.vim-nix
     vimPlugins.vim-just
+    vimPlugins.vim-nix
     vimPlugins.vim-obsession
     vimPlugins.vim-pasta
     vimPlugins.vim-polyglot
-    vimPlugins.vim-projectionist
     vimPlugins.vim-repeat
     vimPlugins.vim-sleuth
-    vimPlugins.vim-surround
     vimPlugins.vim-terraform
     vimPlugins.vim-textobj-user
     vimPlugins.vim-tmux-navigator
     vimPlugins.vim-unimpaired
-    vimPlugins.vim-visual-star-search
-
-    vimPlugins.lualine-nvim
 
     # {
     #   plugin = vimPlugins.vim-sort-motion;
@@ -160,7 +143,6 @@ in rec {
 
     # Git
     vimPlugins.vim-fugitive
-    vimPlugins.vim-rhubarb
 
     # Debugging
     vimPlugins.nvim-dap
@@ -175,22 +157,19 @@ in rec {
     # LSP, linting and formatting
     vimPlugins.conform-nvim
     vimPlugins.lsp-status-nvim
-    vimPlugins.none-ls-nvim
+    vimPlugins.nvim-lint
     vimPlugins.nvim-lspconfig
 
     # Completion
+    pkgs2305.vimPlugins.phpactor
     vimPlugins.cmp-buffer
     vimPlugins.cmp-cmdline
     vimPlugins.cmp-nvim-lsp
-    vimPlugins.cmp-nvim-lsp-signature-help
     vimPlugins.cmp-path
-    vimPlugins.cmp-tabnine
     vimPlugins.cmp-treesitter
-    vimPlugins.cmp-vsnip
     vimPlugins.cmp_luasnip
     vimPlugins.lspkind-nvim
     vimPlugins.nvim-cmp
-    vimPlugins.phpactor
 
     # Snippets
     vimPlugins.friendly-snippets
@@ -211,8 +190,6 @@ in rec {
     vimPlugins.vim-dadbod-ui
     vimPlugins.vim-dadbod-completion
 
-    vimPlugins.vim-floaterm
-
     # # Markdown
     # {
     #   plugin = vimPlugins.markdown-preview-nvim;
@@ -225,15 +202,12 @@ in rec {
     # Themes
     vimPlugins.catppuccin-nvim
 
-    # Wiki
-    vimPlugins.vimwiki
-
     # Configuration.
     opdavies-nvim
   ];
 
   mkExtraPackages = {system}: let
-    inherit (pkgs) nodePackages;
+    inherit (pkgs) nodePackages lua54Packages php82Packages;
 
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -246,6 +220,7 @@ in rec {
     pkgs.php81
 
     # Language servers
+    lua54Packages.luacheck
     nodePackages."@tailwindcss/language-server"
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
@@ -272,11 +247,11 @@ in rec {
     pkgs.stylua
 
     # Tools
+    nodePackages.markdownlint-cli
+    php82Packages.phpcbf
+    php82Packages.phpcs
+    php82Packages.phpstan
     pkgs.html-tidy
-    pkgs.lazygit
-    pkgs.lazydocker
-    pkgs.nnn
-    pkgs.nodePackages.markdownlint-cli
     pkgs.proselint
     pkgs.shellcheck
   ];

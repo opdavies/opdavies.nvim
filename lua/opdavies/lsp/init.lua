@@ -33,7 +33,7 @@ local custom_attach = function(client)
 
   nvim_status.on_attach(client)
 
-  buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
+  buf_inoremap { "<C-k>", vim.lsp.buf.signature_help }
   buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
   buf_nnoremap { "<leader>d", vim.diagnostic.open_float }
   buf_nnoremap { "<leader>rn", vim.lsp.buf.rename }
@@ -66,6 +66,8 @@ local custom_attach = function(client)
   -- filetype_attach[filetype](client)
 end
 
+require("neodev").setup {}
+
 local servers = {
   ansiblels = true,
   bashls = true,
@@ -85,8 +87,20 @@ local servers = {
   lua_ls = {
     settings = {
       Lua = {
+        completion = {
+          callSnippet = "Replace",
+        },
+
         diagnostics = {
           globals = { "vim" },
+        },
+
+        runtime = {
+          version = "LuaJIT",
+        },
+
+        workspace = {
+          checkThirdParty = false,
         },
       },
     },
@@ -146,9 +160,42 @@ vim.diagnostic.config {
   virtual_text = { spacing = 2 },
 }
 
+local conform = require "conform"
+
+conform.setup {
+  formatters_by_ft = {
+    bash = { "shellcheck" },
+    javascript = { { "prettierd", "prettier" } },
+    just = { "just" },
+    lua = { "stylua" },
+    nix = { { "alejandra", "nixfmt" } },
+    php = { { "php_cs_fixer", "phpcbf" } },
+    terraform = { "terraform_fmt" },
+    yaml = { "yamlfmt" },
+  },
+}
+
 vim.keymap.set("n", "<leader>f", function()
-  vim.lsp.buf.format { async = true }
+  conform.format { lsp_fallback = true, async = false, timeout_ms = 500 }
 end)
 
-require "opdavies.lsp.none-ls"
-require "opdavies.lsp.signature"
+local lint = require "lint"
+
+lint.linters_by_ft = {
+  dockerfile = { "hadolint" },
+  javascript = { "eslint_d" },
+  json = { "jsonlint" },
+  lua = { "luacheck" },
+  markdown = { "markdownlint" },
+  nix = { "nix" },
+  php = { "php", "phpcs", "phpstan" },
+}
+
+local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  group = lint_augroup,
+  callback = function()
+    lint.try_lint()
+  end,
+})

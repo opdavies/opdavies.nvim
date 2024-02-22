@@ -1,5 +1,8 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
+  };
 
   outputs = inputs @ {
     self,

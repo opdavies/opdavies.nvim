@@ -8,6 +8,10 @@ catppuccin.setup {
   integrations = {
     cmp = true,
     gitsigns = true,
+    mini = {
+      enabled = true,
+      indentscope_color = "",
+    },
     native_lsp = {
       enabled = true,
     },
