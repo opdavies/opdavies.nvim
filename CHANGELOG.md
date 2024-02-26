@@ -1,5 +1,9 @@
 # Changelog
 
+## 25th February 2024
+
+* Remove `colorcolumn` and `cursorline`.
+
 ## 24th February 2024
 
 ### Added
