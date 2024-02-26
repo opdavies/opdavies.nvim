@@ -2,6 +2,10 @@
 
 ## 26th February 2024
 
+### Added
+
+* Add `eslint_d` as it's declared as a formatter for JavaScript files.
+
 ### Changed
 
 * Update keybindings for snippet completion.

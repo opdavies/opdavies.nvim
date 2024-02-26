@@ -243,6 +243,7 @@ in rec {
     # Formatters
     pkgs.alejandra
     pkgs.black
+    pkgs.eslint_d
     pkgs.nodePackages.prettier
     pkgs.stylua
 
