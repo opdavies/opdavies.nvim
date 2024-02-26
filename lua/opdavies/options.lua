@@ -10,22 +10,6 @@ local function set_autocmd()
     autocmd FileType gitcommit setlocal textwidth=72
   ]]
 
-  -- Cursorline highlighting control.
-  --  Only have it on in the current buffer.
-  local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
-  local set_cursorline = function(event, value, pattern)
-    vim.api.nvim_create_autocmd(event, {
-      group = group,
-      pattern = pattern,
-      callback = function()
-        vim.opt_local.cursorline = value
-      end,
-    })
-  end
-  set_cursorline("WinLeave", false)
-  set_cursorline("WinEnter", true)
-  set_cursorline("FileType", false, "TelescopePrompt")
-
   vim.api.nvim_create_autocmd("TermOpen", {
     callback = function()
       vim.cmd.set "filetype=term"
