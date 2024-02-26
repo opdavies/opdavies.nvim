@@ -1,5 +1,11 @@
 # Changelog
 
+## 26th February 2024
+
+### Changed
+
+* Update keybindings for snippet completion.
+
 ## 25th February 2024
 
 * Remove `colorcolumn` and `cursorline`.
