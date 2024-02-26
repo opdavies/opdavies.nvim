@@ -2,10 +2,17 @@ local conform = require "conform"
 
 conform.setup {
   formatters_by_ft = {
-    rst = { "rstfmt" },
+    bash = { "shellcheck" },
+    javascript = { { "prettierd", "prettier" } },
+    just = { "just" },
+    lua = { "stylua" },
+    nix = { { "alejandra", "nixfmt" } },
+    php = { { "php_cs_fixer", "phpcbf" } },
+    terraform = { "terraform_fmt" },
+    yaml = { "yamlfmt" },
   },
 }
 
-conform.formatters.rstfmt = {
-  command = "rstfmt";
-}
+vim.keymap.set("n", "<leader>f", function()
+  conform.format { lsp_fallback = true, async = false, timeout_ms = 500 }
+end)
