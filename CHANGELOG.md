@@ -4,6 +4,7 @@
 
 ### Changed
 
+* Update Telescope keymaps to be more like the ones in <https://github.com/nvim-lua/kickstart.nvim>.
 * Update Harpoon keymaps and include keymaps to remove a single file and clear all files.
 * Update Telescope to ignore more files and directories by default.
 * Replace `christoomey/vim-tmux-navigator` with `alexghergh/nvim-tmux-navigation`.

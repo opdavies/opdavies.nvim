@@ -99,6 +99,7 @@ end
 
 function M.find_all_files()
   local opts = {
+    file_ignore_patterns = { ".direnv", ".git" },
     no_ignore = true,
     prompt_title = "All Files",
   }
