@@ -87,21 +87,15 @@ local servers = {
   lua_ls = {
     settings = {
       Lua = {
-        completion = {
-          callSnippet = "Replace",
-        },
+        completion = { callSnippet = "Replace" },
 
         diagnostics = {
           globals = { "vim" },
         },
 
-        runtime = {
-          version = "LuaJIT",
-        },
-
-        workspace = {
-          checkThirdParty = false,
-        },
+        runtime = { version = "LuaJIT" },
+        telemetry = { enabled = false },
+        workspace = { checkThirdParty = false },
       },
     },
   },
