@@ -36,6 +36,16 @@ in rec {
     pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
 
     customVim = {
+      nvim-tmux-navigation = pkgs.vimUtils.buildVimPlugin {
+        name = "nvim-tmux-navigation";
+        src = pkgs.fetchFromGitHub {
+          owner = "alexghergh";
+          repo = "nvim-tmux-navigation";
+          rev = "4898c98702954439233fdaf764c39636681e2861";
+          sha256 = "CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=";
+        };
+      };
+
       tabline-vim = pkgs.vimUtils.buildVimPlugin {
         name = "tabline-vim";
         src = pkgs.fetchFromGitHub {
@@ -89,6 +99,7 @@ in rec {
 
     opdavies-nvim = mkVimPlugin {inherit system;};
   in [
+    customVim.nvim-tmux-navigation
     customVim.tabline-vim
     customVim.vim-caser
     customVim.vim-heritage
@@ -118,7 +129,6 @@ in rec {
     vimPlugins.vim-sleuth
     vimPlugins.vim-terraform
     vimPlugins.vim-textobj-user
-    vimPlugins.vim-tmux-navigator
     vimPlugins.vim-unimpaired
 
     # {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 27th February 2024
+
+### Changed
+
+* Replace `christoomey/vim-tmux-navigator` with `alexghergh/nvim-tmux-navigation`.
+
 ## 26th February 2024
 
 ### Added
