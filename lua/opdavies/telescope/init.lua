@@ -97,14 +97,6 @@ function M.file_browser()
   require("telescope").extensions.file_browser.file_browser(opts)
 end
 
-function M.find_files()
-  local opts = {
-    file_ignore_patterns = { ".git/", "**/{core,contrib}", "vendor" },
-  }
-
-  require("telescope.builtin").find_files(opts)
-end
-
 function M.find_all_files()
   local opts = {
     no_ignore = true,
@@ -116,7 +108,6 @@ end
 
 function M.git_files()
   local opts = {
-    file_ignore_patterns = { ".git/", "**/{core,contrib}", "vendor" },
     hidden = true,
     no_ignore = true,
   }

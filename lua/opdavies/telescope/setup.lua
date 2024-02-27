@@ -33,14 +33,24 @@ local lga_actions = require "telescope-live-grep-args.actions"
 telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
-    file_ignore_patterns = { ".direnv/", ".git/" },
-    layout_config = {
-      prompt_position = "top",
+
+    file_ignore_patterns = {
+      "%/contrib",
+      "%/core",
+      "%/libraries",
+      ".direnv",
+      ".git/",
+      "composer.json.save",
+      "composer.lock",
+      "flake.lock",
+      "node_modules",
+      "package-lock.json",
+      "pnpm-lock.yaml",
+      "vendor",
+      "yarn.lock",
     },
 
-    preview = {
-      hide_on_startup = true,
-    },
+    layout_config = { prompt_position = "top" },
 
     mappings = {
       i = {
@@ -53,6 +63,7 @@ telescope.setup {
 
     no_ignore = true,
     path_display = { truncate = 1 },
+    preview = { hide_on_startup = true },
     prompt_prefix = "$ ",
     sorting_strategy = "ascending",
   },

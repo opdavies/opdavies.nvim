@@ -4,6 +4,7 @@
 
 ### Changed
 
+* Updated Telescope to ignore more files and directories by default.
 * Replace `christoomey/vim-tmux-navigator` with `alexghergh/nvim-tmux-navigation`.
 
 ## 26th February 2024
