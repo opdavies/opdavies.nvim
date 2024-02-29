@@ -28,6 +28,8 @@ local custom_init = function(client)
   client.config.flags.allow_incremental_sync = true
 end
 
+local handlers = require "opdavies.lsp.handlers"
+
 local custom_attach = function(client)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
@@ -41,7 +43,7 @@ local custom_attach = function(client)
   buf_nnoremap { "[d", vim.diagnostic.goto_prev }
   buf_nnoremap { "]d", vim.diagnostic.goto_next }
   buf_nnoremap { "gD", vim.lsp.buf.declaration }
-  buf_nnoremap { "gd", vim.lsp.buf.definition }
+  buf_nnoremap { "gd", handlers.definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
   buf_nnoremap { "gT", vim.lsp.buf.type_definition }
 
