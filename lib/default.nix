@@ -259,8 +259,7 @@ in rec {
 
     # Tools
     nodePackages.markdownlint-cli
-    php82Packages.phpcbf
-    php82Packages.phpcs
+    php82Packages.php-codesniffer
     php82Packages.phpstan
     pkgs.html-tidy
     pkgs.proselint
