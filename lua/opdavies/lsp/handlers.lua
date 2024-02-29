@@ -5,7 +5,9 @@ M.definition = function()
 
   vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result, ctx, config)
     local new_result = vim.tbl_filter(function(v)
-      -- Remove any referneces to the nix store via the .direnv directory.
+      -- TODO: remove definitions within vendor-bin directory for PHP files?
+
+      -- Remove any definitions within the nix store via the .direnv directory.
       return not string.find(v.targetUri, ".direnv")
     end, result)
 
