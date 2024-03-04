@@ -71,21 +71,15 @@ end
 require("neodev").setup {}
 
 local servers = {
-  ansiblels = true,
-  bashls = true,
-  cssls = true,
-  gopls = true,
-  grammarly = true,
-  html = true,
-  rnix = true,
-  terraformls = true,
-  tsserver = true,
-  vuels = true,
-
+  ansiblels = {},
+  bashls = {},
+  cssls = {},
+  gopls = {},
+  grammarly = {},
+  html = {},
   intelephense = {
     filetypes = { "php", "module", "test", "inc" },
   },
-
   lua_ls = {
     settings = {
       Lua = {
@@ -101,7 +95,7 @@ local servers = {
       },
     },
   },
-
+  rnix = {},
   tailwindcss = {
     filetypes = { "html", "html.twig", "javascript", "typescript", "vue" },
 
@@ -111,7 +105,9 @@ local servers = {
       },
     },
   },
-
+  terraformls = {},
+  tsserver = {},
+  vuels = {},
   yamlls = {
     settings = {
       yaml = {
@@ -122,14 +118,6 @@ local servers = {
 }
 
 local setup_server = function(server, config)
-  if not config then
-    return
-  end
-
-  if type(config) ~= "table" then
-    config = {}
-  end
-
   config = vim.tbl_deep_extend("force", {
     on_init = custom_init,
     on_attach = custom_attach,
