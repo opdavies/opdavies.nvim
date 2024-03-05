@@ -20,16 +20,6 @@ local buf_inoremap = function(opts)
   imap(opts)
 end
 
-local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-default_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
-
-local custom_init = function(client)
-  client.config.flags = client.config.flags or {}
-  client.config.flags.allow_incremental_sync = true
-end
-
-local handlers = require "opdavies.lsp.handlers"
-
 local custom_attach = function(client)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
@@ -42,6 +32,9 @@ local custom_attach = function(client)
   buf_nnoremap { "<leader>rr", "<cmd>LspRestart<cr>" }
   buf_nnoremap { "[d", vim.diagnostic.goto_prev }
   buf_nnoremap { "]d", vim.diagnostic.goto_next }
+
+  local handlers = require "opdavies.lsp.handlers"
+
   buf_nnoremap { "gD", vim.lsp.buf.declaration }
   buf_nnoremap { "gd", handlers.definition }
   buf_nnoremap { "gi", vim.lsp.buf.implementation }
@@ -99,9 +92,11 @@ local servers = {
   tailwindcss = {
     filetypes = { "html", "html.twig", "javascript", "typescript", "vue" },
 
-    init_options = {
-      userLanguages = {
-        ["html.twig"] = "html",
+    settings = {
+      init_options = {
+        userLanguages = {
+          ["html.twig"] = "html",
+        },
       },
     },
   },
@@ -117,27 +112,19 @@ local servers = {
   },
 }
 
-local setup_server = function(server, config)
-  config = vim.tbl_deep_extend("force", {
-    on_init = custom_init,
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+for server_name in pairs(servers) do
+  lspconfig[server_name].setup {
+    capabilities = capabilities,
+    filetypes = (servers[server_name] or {}).filetypes,
     on_attach = custom_attach,
-    capabilities = default_capabilities,
-    flags = {
-      debounce_text_changes = nil,
-    },
-  }, config)
-
-  lspconfig[server].setup(config)
-end
-
-for server, config in pairs(servers) do
-  setup_server(server, config)
+    settings = (servers[server_name] or {}).settings,
+  }
 end
 
 vim.diagnostic.config {
-  float = {
-    source = true,
-  },
+  float = { source = true },
   signs = true,
   underline = false,
   update_in_insert = false,
