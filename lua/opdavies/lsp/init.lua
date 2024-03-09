@@ -68,7 +68,6 @@ local servers = {
   bashls = {},
   cssls = {},
   gopls = {},
-  grammarly = {},
   html = {},
   intelephense = {
     filetypes = { "php", "module", "test", "inc" },

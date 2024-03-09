@@ -1,5 +1,11 @@
 # Changelog
 
+## 9th March 2024
+
+### Removed
+
+* Removed Grammarly as it's marked as broken in the Nix store.
+
 ## 27th February 2024
 
 ### Changed
