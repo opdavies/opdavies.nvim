@@ -200,6 +200,8 @@ in rec {
     vimPlugins.vim-dadbod-ui
     vimPlugins.vim-dadbod-completion
 
+    vimPlugins.markdown-preview-nvim
+
     # # Markdown
     # {
     #   plugin = vimPlugins.markdown-preview-nvim;
