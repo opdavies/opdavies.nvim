@@ -246,9 +246,9 @@ in rec {
     pkgs.ansible-language-server
     pkgs.gopls
     pkgs.lua-language-server
-    pkgs.nixd
+    # pkgs.nixd
     pkgs.phpactor
-    pkgs.rnix-lsp
+    # pkgs.rnix-lsp
     pkgs.terraform-ls
 
     # Formatters
