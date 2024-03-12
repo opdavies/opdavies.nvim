@@ -75,15 +75,25 @@ local servers = {
   lua_ls = {
     settings = {
       Lua = {
-        completion = { callSnippet = "Replace" },
+        completion = {
+          callSnippet = "Replace",
+        },
 
         diagnostics = {
           globals = { "vim" },
         },
 
-        runtime = { version = "LuaJIT" },
-        telemetry = { enabled = false },
-        workspace = { checkThirdParty = false },
+        runtime = {
+          version = "LuaJIT",
+        },
+
+        telemetry = {
+          enabled = false,
+        },
+
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
       },
     },
   },
@@ -114,11 +124,13 @@ local servers = {
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for server_name in pairs(servers) do
+  local server = servers[server_name] or {}
+
   lspconfig[server_name].setup {
     capabilities = capabilities,
-    filetypes = (servers[server_name] or {}).filetypes,
+    filetypes = server.filetypes,
     on_attach = custom_attach,
-    settings = (servers[server_name] or {}).settings,
+    settings = server.settings,
   }
 end
 
