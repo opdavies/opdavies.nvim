@@ -122,6 +122,7 @@ in rec {
     vimPlugins.vim-highlightedyank
     vimPlugins.vim-just
     vimPlugins.vim-nix
+    vimPlugins.nvim-spectre
     vimPlugins.vim-obsession
     vimPlugins.vim-pasta
     vimPlugins.vim-polyglot
@@ -259,6 +260,7 @@ in rec {
     pkgs.stylua
 
     # Tools
+    nodePackages.jsonlint
     nodePackages.markdownlint-cli
     php82Packages.php-codesniffer
     php82Packages.phpstan
