@@ -153,6 +153,7 @@ in rec {
     vimPlugins.vim-test
 
     # Git
+    vimPlugins.diffview-nvim
     vimPlugins.vim-fugitive
 
     # Debugging
