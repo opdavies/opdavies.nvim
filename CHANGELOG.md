@@ -1,5 +1,27 @@
 # Changelog
 
+## 12th March 2024
+
+### Added
+
+* Add `diffnvim.nvim` as another way to deal with merge conflicts.
+* Add `nvim-spectre` for global find and replace within a project.
+* Add `jsonlint` for linting JSON files.
+
+### Changed
+
+* Configure `lua_ls` settings to set the workspace directory.
+
+### Removed
+
+* Remove `nixd` and `rnix-lsp` as they were preventing me from upgrading from an insecure version of nix.
+
+## 11th March 2024
+
+### Added
+
+* Re-add `markdown-preview.nvim`.
+
 ## 9th March 2024
 
 ### Removed
