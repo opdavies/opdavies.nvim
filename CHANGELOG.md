@@ -6,6 +6,10 @@
 
 * Add `committia.vim` to improve the commit buffer when running `git commit`.
 
+### Changed
+
+* Update `gitsigns` keymaps to use `g` as the prefix for keymaps instead of `h` - e.g. `gb` to `git blame` the current line.
+
 ## 12th March 2024
 
 ### Added

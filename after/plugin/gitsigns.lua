@@ -8,8 +8,6 @@ gitsigns.setup {
   numhl = true,
 }
 
-local bufnr = vim.api.nvim_get_current_buf()
-
 local map = require("opdavies.keymap").map
 local nmap = require("opdavies.keymap").nmap
 local vmap = require("opdavies.keymap").vmap
@@ -17,20 +15,22 @@ local vmap = require("opdavies.keymap").vmap
 nmap { "[h", "<cmd>Gitsigns prev_hunk<CR>" }
 nmap { "]h", "<cmd>Gitsigns next_hunk<CR>" }
 
-nmap { "<leader>hR", gitsigns.reset_buffer }
-nmap { "<leader>hS", gitsigns.stage_buffer }
-nmap { "<leader>hp", gitsigns.preview_hunk }
-nmap { "<leader>hr", gitsigns.reset_hunk }
-nmap { "<leader>hs", gitsigns.stage_hunk }
-nmap { "<leader>hu", gitsigns.undo_stage_hunk }
+nmap { "<leader>gR", gitsigns.reset_buffer }
+nmap { "<leader>gS", gitsigns.stage_buffer }
+nmap { "<leader>gb", gitsigns.blame_line }
+nmap { "<leader>gp", gitsigns.preview_hunk }
+nmap { "<leader>gr", gitsigns.reset_hunk }
+nmap { "<leader>gs", gitsigns.stage_hunk }
+nmap { "<leader>gu", gitsigns.undo_stage_hunk }
+
 vmap {
-  "<leader>hr",
+  "<leader>gr",
   function()
     gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
   end,
 }
 vmap {
-  "<leader>hs",
+  "<leader>gs",
   function()
     gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
   end,
