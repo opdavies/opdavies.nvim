@@ -125,13 +125,13 @@ nmap { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<CR>" }
 nmap { "<leader>tp", "<cmd>TSPlaygroundToggle<CR>" }
 
 -- vim way: ; goes to the direction you were moving.
-map {{ "n", "o", "x" }, ";", ts_repeat_move.repeat_last_move}
-map {{ "n", "o", "x" }, ",", ts_repeat_move.repeat_last_move_opposite}
+map { { "n", "o", "x" }, ";", ts_repeat_move.repeat_last_move }
+map { { "n", "o", "x" }, ",", ts_repeat_move.repeat_last_move_opposite }
 
 -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-map {{ "n", "o", "x" }, "f", ts_repeat_move.builtin_f}
-map {{ "n", "o", "x" }, "F", ts_repeat_move.builtin_F}
-map {{ "n", "o", "x" }, "t", ts_repeat_move.builtin_t}
-map {{ "n", "o", "x" }, "T", ts_repeat_move.builtin_T}
+map { { "n", "o", "x" }, "f", ts_repeat_move.builtin_f }
+map { { "n", "o", "x" }, "F", ts_repeat_move.builtin_F }
+map { { "n", "o", "x" }, "t", ts_repeat_move.builtin_t }
+map { { "n", "o", "x" }, "T", ts_repeat_move.builtin_T }
 
 context.setup { enable = true }
