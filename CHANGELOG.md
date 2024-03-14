@@ -1,5 +1,11 @@
 # Changelog
 
+## 13th March 2024
+
+### Added
+
+* Add `committia.vim` to improve the commit buffer when running `git commit`.
+
 ## 12th March 2024
 
 ### Added
