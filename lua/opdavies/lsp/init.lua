@@ -96,7 +96,7 @@ local servers = {
       },
     },
   },
-  rnix = {},
+  nixd = {},
   tailwindcss = {
     filetypes = { "html", "html.twig", "javascript", "typescript", "vue" },
 

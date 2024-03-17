@@ -2,6 +2,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
+
+    nixd-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    nixd-nightly.url = "github:nix-community/nixd";
   };
 
   outputs = inputs @ {
