@@ -64,7 +64,6 @@ end
 require("neodev").setup {}
 
 local servers = {
-  ansiblels = {},
   bashls = {},
   cssls = {},
   gopls = {},

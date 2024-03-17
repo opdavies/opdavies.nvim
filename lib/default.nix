@@ -281,7 +281,6 @@ in rec {
     nodePackages.vscode-langservers-extracted
     nodePackages.vue-language-server
     nodePackages.yaml-language-server
-    pkgs.ansible-language-server
     pkgs.gopls
     pkgs.lua-language-server
     # pkgs.nixd
