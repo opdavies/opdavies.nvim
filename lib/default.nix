@@ -26,6 +26,7 @@ in rec {
 
   mkNeovimPlugins = {system}: let
     inherit (pkgs) php82Packages vimPlugins;
+    inherit (pkgs.vimUtils) buildVimPlugin;
 
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -36,7 +37,7 @@ in rec {
     pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
 
     customVim = {
-      nvim-tmux-navigation = pkgs.vimUtils.buildVimPlugin {
+      nvim-tmux-navigation = buildVimPlugin {
         name = "nvim-tmux-navigation";
         src = pkgs.fetchFromGitHub {
           owner = "alexghergh";
@@ -46,7 +47,7 @@ in rec {
         };
       };
 
-      tabline-vim = pkgs.vimUtils.buildVimPlugin {
+      tabline-vim = buildVimPlugin {
         name = "tabline-vim";
         src = pkgs.fetchFromGitHub {
           owner = "mkitt";
@@ -56,7 +57,7 @@ in rec {
         };
       };
 
-      vim-caser = pkgs.vimUtils.buildVimPlugin {
+      vim-caser = buildVimPlugin {
         name = "vim-caser";
         src = pkgs.fetchFromGitHub {
           owner = "arthurxavierx";
@@ -66,7 +67,7 @@ in rec {
         };
       };
 
-      vim-heritage = pkgs.vimUtils.buildVimPlugin {
+      vim-heritage = buildVimPlugin {
         name = "vim-heritage";
         src = pkgs.fetchFromGitHub {
           owner = "jessarcher";
@@ -76,7 +77,7 @@ in rec {
         };
       };
 
-      vim-textobj-xmlattr = pkgs.vimUtils.buildVimPlugin {
+      vim-textobj-xmlattr = buildVimPlugin {
         name = "vim-textobj-xmlattr";
         src = pkgs.fetchFromGitHub {
           owner = "whatyouhide";
@@ -86,7 +87,7 @@ in rec {
         };
       };
 
-      vim-zoom = pkgs.vimUtils.buildVimPlugin {
+      vim-zoom = buildVimPlugin {
         name = "vim-zoom";
         src = pkgs.fetchFromGitHub {
           owner = "dhruvasagar";
