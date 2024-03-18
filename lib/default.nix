@@ -157,7 +157,6 @@ in rec {
       # Git
       vimPlugins.committia-vim
       vimPlugins.diffview-nvim
-      vimPlugins.vim-fugitive
 
       # Debugging
       vimPlugins.nvim-dap
