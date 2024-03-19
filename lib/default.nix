@@ -257,7 +257,6 @@ in rec {
 
   mkExtraPackages = { system }:
     let
-      inherit (inputs) nixd-nightly;
       inherit (pkgs) nodePackages lua54Packages php82Packages;
 
       pkgs = import inputs.nixpkgs {
@@ -272,7 +271,6 @@ in rec {
 
       # Language servers
       lua54Packages.luacheck
-      nixd-nightly.packages.${system}.nixd
       nodePackages."@tailwindcss/language-server"
       nodePackages.bash-language-server
       nodePackages.dockerfile-language-server-nodejs
@@ -285,6 +283,7 @@ in rec {
       nodePackages.yaml-language-server
       pkgs.gopls
       pkgs.lua-language-server
+      pkgs.nil
       pkgs.phpactor
       pkgs.terraform-ls
 
