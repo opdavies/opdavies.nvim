@@ -96,6 +96,7 @@ local servers = {
       },
     },
   },
+  marksman = {},
   nil_ls = {},
   tailwindcss = {
     filetypes = { "html", "html.twig", "javascript", "typescript", "vue" },
