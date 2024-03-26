@@ -153,6 +153,7 @@ in rec {
 
       # Testing
       vimPlugins.vim-test
+      vimPlugins.vimux
 
       # Git
       vimPlugins.committia-vim
