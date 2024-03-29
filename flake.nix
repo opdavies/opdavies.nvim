@@ -4,23 +4,24 @@
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
   };
 
-  outputs = inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      flake = { lib = import ./lib { inherit inputs; }; };
+  outputs = { nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
 
-      systems = [ "x86_64-linux" ];
+      lib = import ./lib { inherit inputs; };
 
-      perSystem = { pkgs, self', system, ... }:
-        let
-          default = self.lib.mkVimPlugin { inherit system; };
-          neovim = self.lib.mkNeovim { inherit system; };
-        in {
-          devShells.default =
-            pkgs.mkShell { nativeBuildInputs = [ pkgs.just pkgs.nixfmt ]; };
+      inherit (lib) mkNeovim mkVimPlugin;
+      inherit (pkgs) mkShell;
 
-          packages = { inherit default neovim; };
+      default = mkVimPlugin { inherit system; };
+      neovim = mkNeovim { inherit system; };
+    in {
+      devShells.${system}.default =
+        mkShell { buildInputs = with pkgs; [ just ]; };
 
-          formatter = pkgs.nixfmt;
-        };
+      formatter.${system} = pkgs.nixfmt;
+
+      packages.${system} = { inherit default neovim; };
     };
 }
