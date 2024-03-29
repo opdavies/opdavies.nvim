@@ -1,0 +1,6 @@
+name: opdavies-nvim
+root: .
+
+windows:
+  - vim: nvim
+  - shell:

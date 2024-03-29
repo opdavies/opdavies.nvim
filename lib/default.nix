@@ -13,6 +13,7 @@ in rec {
         rm -rf $out/.envrc
         rm -rf $out/.gitignore
         rm -rf $out/.luacheckrc
+        rm -rf $out/.tmuxinator.yaml
         rm -rf $out/CHANGELOG.md
         rm -rf $out/flake.lock
         rm -rf $out/flake.nix
