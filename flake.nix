@@ -17,6 +17,8 @@
       default = mkVimPlugin { inherit system; };
       neovim = mkNeovim { inherit system; };
     in {
+      inherit lib;
+
       devShells.${system}.default =
         mkShell { buildInputs = with pkgs; [ just ]; };
 
