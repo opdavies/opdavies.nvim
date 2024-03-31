@@ -49,16 +49,6 @@ in rec {
           };
         };
 
-        obsidian-nvim = buildVimPlugin {
-          name = "obsidian-nvim";
-          src = pkgs.fetchFromGitHub {
-            owner = "epwalsh/";
-            repo = "obsidian.nvim";
-            rev = "be075a1c8d290a383be755f0cb2411be5d065726";
-            sha256 = "ygqCxoXKnSqfV92EkloGRKqe4zklwu9Xu7iG3XKmXFc=";
-          };
-        };
-
         tabline-vim = buildVimPlugin {
           name = "tabline-vim";
           src = pkgs.fetchFromGitHub {
@@ -113,7 +103,6 @@ in rec {
       opdavies-nvim = mkVimPlugin { inherit system; };
     in [
       customVim.nvim-tmux-navigation
-      customVim.obsidian-nvim
       customVim.tabline-vim
       customVim.vim-caser
       customVim.vim-heritage
@@ -284,7 +273,6 @@ in rec {
 
       # Language servers
       lua54Packages.luacheck
-      pkgs.marksman
       nodePackages."@tailwindcss/language-server"
       nodePackages.bash-language-server
       nodePackages.dockerfile-language-server-nodejs
