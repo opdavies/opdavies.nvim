@@ -293,6 +293,7 @@ in rec {
       pkgs.alejandra
       pkgs.black
       pkgs.eslint_d
+      pkgs.nixfmt
       pkgs.nodePackages.prettier
       pkgs.stylua
 
