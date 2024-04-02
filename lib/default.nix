@@ -101,6 +101,8 @@ in rec {
       };
 
       opdavies-nvim = mkVimPlugin { inherit system; };
+
+      inherit (vimPlugins) treesj;
     in [
       customVim.nvim-tmux-navigation
       customVim.tabline-vim
@@ -142,15 +144,8 @@ in rec {
       #     vim.g.sort_motion_flags = "ui"
       #   '';
       # }
-      # {
-      #   plugin = vimPlugins.treesj;
-      #   type = "lua";
-      #   config = ''
-      #     require "treesj".setup {}
-      #   '';
-      # }
       vimPlugins.vim-sort-motion
-      vimPlugins.treesj
+      treesj
 
       # Testing
       vimPlugins.vim-test
