@@ -261,6 +261,8 @@ in rec {
 
         config.allowUnfree = true;
       };
+
+      inherit (pkgs) hadolint;
     in [
       # Languages
       nodePackages.typescript
@@ -293,6 +295,7 @@ in rec {
       pkgs.stylua
 
       # Tools
+      hadolint
       nodePackages.jsonlint
       nodePackages.markdownlint-cli
       php82Packages.php-codesniffer
