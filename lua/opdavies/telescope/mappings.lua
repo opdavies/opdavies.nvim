@@ -32,6 +32,7 @@ telescope_mapper("<leader>sg", "git_files") -- [S]earch [G]it Files
 telescope_mapper("<leader>sh", "help_tags") -- [S]earch [H]elp
 telescope_mapper("<leader>sl", "live_grep") -- [S]earch using [L]ive grep
 telescope_mapper("<leader>sp", "grep_prompt") -- [S]earch using grep [P]rompt
+telescope_mapper("<leader>st", "search_todos") -- [S]earch using grep [P]rompt
 
 local builtin = require "telescope.builtin"
 local telescope = require "telescope"

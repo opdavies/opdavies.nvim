@@ -140,6 +140,23 @@ function M.oldfiles()
   require("telescope").extensions.frecency.frecency(opts)
 end
 
+function M.search_todos()
+  local opts = {
+    search = "TODO",
+    search_dirs = {
+      "app",
+      "docroot/modules/custom",
+      "docroot/themes/custom",
+      "src",
+      "web/modules/custom",
+      "web/themes/custom",
+    },
+    prompt_title = "TODOs",
+  }
+
+  require("telescope.builtin").grep_string(opts)
+end
+
 return setmetatable({}, {
   __index = function(_, k)
     reloader()
