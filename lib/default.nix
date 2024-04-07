@@ -130,7 +130,6 @@ in rec {
       vimPlugins.nvim-spectre
       vimPlugins.vim-obsession
       vimPlugins.vim-pasta
-      vimPlugins.vim-polyglot
       vimPlugins.vim-repeat
       vimPlugins.vim-sleuth
       vimPlugins.vim-terraform
