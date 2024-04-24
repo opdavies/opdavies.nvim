@@ -184,6 +184,7 @@ in rec {
         p.html
         p.javascript
         p.json
+        p.just
         p.lua
         p.luadoc
         p.make
