@@ -4,12 +4,12 @@
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, self, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      lib = import ./lib { inherit inputs; };
+      lib = import ./lib { inherit inputs self; };
 
       inherit (lib) mkNeovim mkVimPlugin;
       inherit (pkgs) mkShell;
