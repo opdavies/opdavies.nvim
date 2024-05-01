@@ -42,8 +42,6 @@ in rec {
       pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
 
       opdavies-nvim = mkVimPlugin { inherit system; };
-
-      inherit (vimPlugins) treesj;
     in [
       vimPlugins.nvim-tmux-navigation
       vimPlugins.obsidian-nvim
@@ -87,7 +85,7 @@ in rec {
       #   '';
       # }
       vimPlugins.vim-sort-motion
-      treesj
+      vimPlugins.treesj
 
       # Testing
       vimPlugins.vim-test
