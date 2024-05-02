@@ -59,15 +59,5 @@ final: prev: {
         sha256 = "/ADzScsG0u6RJbEtfO23Gup2NYdhPkExqqOPVcQa7aQ=";
       };
     };
-
-    obsidian-nvim = final.vimUtils.buildVimPlugin {
-      name = "obsidian-nvim";
-      src = final.fetchFromGitHub {
-        owner = "epwalsh";
-        repo = "obsidian.nvim";
-        rev = "be075a1c8d290a383be755f0cb2411be5d065726";
-        sha256 = "ygqCxoXKnSqfV92EkloGRKqe4zklwu9Xu7iG3XKmXFc=";
-      };
-    };
   };
 }

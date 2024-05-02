@@ -44,7 +44,6 @@ in rec {
       opdavies-nvim = mkVimPlugin { inherit system; };
     in [
       vimPlugins.nvim-tmux-navigation
-      vimPlugins.obsidian-nvim
       vimPlugins.tabline-vim
       vimPlugins.vim-caser
       vimPlugins.vim-heritage
