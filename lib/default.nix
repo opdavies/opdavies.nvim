@@ -59,7 +59,6 @@ in rec {
       vimPlugins.mini-nvim
       vimPlugins.neodev-nvim
       vimPlugins.nvim-web-devicons
-      vimPlugins.oil-nvim
       vimPlugins.refactoring-nvim
       vimPlugins.rest-nvim
       vimPlugins.undotree
