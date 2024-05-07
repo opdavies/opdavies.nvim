@@ -11,6 +11,7 @@ local settings = {
   foldmethod = "indent",
   formatoptions = "clqjp",
   hidden = false,
+  hlsearch = false,
   inccommand = "split",
   linebreak = true,
   list = true,
