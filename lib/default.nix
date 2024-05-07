@@ -50,6 +50,7 @@ in rec {
       vimPlugins.vim-textobj-xmlattr
       vimPlugins.vim-zoom
 
+      inputs.nixpkgs-2305.legacyPackages.${system}.vimPlugins.rest-nvim
       vimPlugins.comment-nvim
       vimPlugins.dial-nvim
       vimPlugins.fidget-nvim
@@ -60,7 +61,6 @@ in rec {
       vimPlugins.neodev-nvim
       vimPlugins.nvim-web-devicons
       vimPlugins.refactoring-nvim
-      vimPlugins.rest-nvim
       vimPlugins.undotree
       vimPlugins.vim-eunuch
       vimPlugins.vim-highlightedyank
