@@ -15,11 +15,5 @@ require("mini.move").setup {}
 
 require("mini.operators").setup {}
 
-require("mini.statusline").setup {
-  -- Use global statusline.
-  set_vim_settings = false,
-
-  use_icons = false,
-}
 
 require("mini.surround").setup {}
