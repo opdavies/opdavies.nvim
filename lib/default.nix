@@ -75,14 +75,6 @@ in rec {
       vimPlugins.vim-textobj-user
       vimPlugins.vim-unimpaired
 
-      # {
-      #   plugin = vimPlugins.vim-sort-motion;
-      #   type = "lua";
-      #   config = ''
-      #     vim.g.sort_motion_flags = "ui"
-      #   '';
-      # }
-      vimPlugins.vim-sort-motion
       vimPlugins.treesj
 
       # Testing
