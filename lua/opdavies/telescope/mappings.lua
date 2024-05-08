@@ -26,7 +26,6 @@ telescope_mapper("<leader>/", "current_buf") -- [/] Fuzzily search in current bu
 telescope_mapper("<leader><leader>", "buffers") -- [ ] Find existing buffers
 telescope_mapper("<leader>s.", "oldfiles") -- '[S]earch Recent Files ("." for repeat)
 telescope_mapper("<leader>sF", "find_all_files") -- [S]earch all [F]iles
-telescope_mapper("<leader>sb", "file_browser") -- [S]earch using the File [B]rowser
 telescope_mapper("<leader>sf", "find_files") -- [S]earch [F]iles
 telescope_mapper("<leader>sg", "git_files") -- [S]earch [G]it Files
 telescope_mapper("<leader>sh", "help_tags") -- [S]earch [H]elp

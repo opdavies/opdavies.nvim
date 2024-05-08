@@ -162,7 +162,6 @@ in rec {
       # Telescope
       vimPlugins.plenary-nvim
       vimPlugins.popup-nvim
-      vimPlugins.telescope-file-browser-nvim
       vimPlugins.telescope-frecency-nvim
       vimPlugins.telescope-fzf-native-nvim
       vimPlugins.telescope-live-grep-args-nvim

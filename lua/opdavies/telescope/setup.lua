@@ -87,10 +87,6 @@ telescope.setup {
   },
 
   extensions = {
-    file_browser = {
-      theme = "ivy",
-    },
-
     live_grep_args = {
       auto_quoting = true,
       mappings = {
@@ -107,7 +103,6 @@ telescope.setup {
   },
 }
 
-telescope.load_extension "file_browser"
 telescope.load_extension "fzf"
 telescope.load_extension "refactoring"
 telescope.load_extension "ui-select"

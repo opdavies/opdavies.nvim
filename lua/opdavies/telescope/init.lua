@@ -88,15 +88,6 @@ function M.edit_zsh()
   require("telescope.builtin").find_files(opts)
 end
 
-function M.file_browser()
-  local opts = {
-    cwd = vim.fn.expand "%:p:h",
-    sorting_strategy = "ascending",
-  }
-
-  require("telescope").extensions.file_browser.file_browser(opts)
-end
-
 function M.find_all_files()
   local opts = {
     file_ignore_patterns = { ".direnv", ".git" },
