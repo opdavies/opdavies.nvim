@@ -197,6 +197,7 @@ in rec {
     in [
       # Languages
       nodePackages.typescript
+      pkgs.nodejs-slim
       pkgs.php81
 
       # Language servers
