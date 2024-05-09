@@ -225,6 +225,7 @@ in rec {
       pkgs.nixfmt
       pkgs.nodePackages.prettier
       pkgs.stylua
+      pkgs.yamlfmt
 
       # Tools
       hadolint
@@ -235,6 +236,7 @@ in rec {
       pkgs.html-tidy
       pkgs.proselint
       pkgs.shellcheck
+      pkgs.yamllint
     ];
 
   mkExtraConfig = ''
