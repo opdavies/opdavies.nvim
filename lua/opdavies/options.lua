@@ -26,6 +26,7 @@ local settings = {
   signcolumn = "yes:1",
   smartindent = true,
   softtabstop = 2,
+  spellfile = "/home/opdavies/Code/personal/opdavies.nvim/spell/en.utf-8.add",
   swapfile = false,
   syntax = "on",
   tabstop = 2,
