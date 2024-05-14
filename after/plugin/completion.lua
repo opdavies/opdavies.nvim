@@ -81,9 +81,9 @@ cmp.setup.cmdline({ "/", "?" }, {
   },
 })
 
-vim.cmd [[
-  augroup DadbodSql
-    au!
-    autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer { sources = { { name = 'vim-dadbod-completion' } } }
-  augroup END
-]]
+cmp.setup.filetype({ "sql" }, {
+  sources = {
+    { name = "vim-dadbod-completion" },
+    { name = "buffer" },
+  },
+})
