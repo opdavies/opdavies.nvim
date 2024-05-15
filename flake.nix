@@ -4,7 +4,8 @@
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
   };
 
-  outputs = { nixpkgs, self, ... }@inputs:
+  outputs =
+    { nixpkgs, self, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -16,14 +17,16 @@
 
       default = mkVimPlugin { inherit system; };
       neovim = mkNeovim { inherit system; };
-    in {
+    in
+    {
       inherit lib;
 
-      devShells.${system}.default =
-        mkShell { buildInputs = with pkgs; [ just ]; };
+      devShells.${system}.default = mkShell { buildInputs = with pkgs; [ just ]; };
 
-      formatter.${system} = pkgs.nixfmt;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
 
-      packages.${system} = { inherit default neovim; };
+      packages.${system} = {
+        inherit default neovim;
+      };
     };
 }

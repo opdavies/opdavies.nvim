@@ -1,14 +1,18 @@
 { inputs, self }:
 
-let inherit (inputs.nixpkgs) legacyPackages;
-in rec {
-  mkVimPlugin = { system }:
+let
+  inherit (inputs.nixpkgs) legacyPackages;
+in
+rec {
+  mkVimPlugin =
+    { system }:
     let
       inherit (pkgs) vimUtils;
       inherit (vimUtils) buildVimPlugin;
 
       pkgs = legacyPackages.${system};
-    in buildVimPlugin {
+    in
+    buildVimPlugin {
       name = "opdavies";
       postInstall = ''
         rm -rf $out/.envrc
@@ -26,7 +30,8 @@ in rec {
       src = ../.;
     };
 
-  mkNeovimPlugins = { system }:
+  mkNeovimPlugins =
+    { system }:
     let
       inherit (pkgs) vimPlugins;
       inherit (pkgs.vimUtils) buildVimPlugin;
@@ -42,7 +47,8 @@ in rec {
       pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
 
       opdavies-nvim = mkVimPlugin { inherit system; };
-    in [
+    in
+    [
       vimPlugins.nvim-tmux-navigation
       vimPlugins.tabline-vim
       vimPlugins.vim-caser
@@ -184,7 +190,8 @@ in rec {
       opdavies-nvim
     ];
 
-  mkExtraPackages = { system }:
+  mkExtraPackages =
+    { system }:
     let
       inherit (pkgs) nodePackages lua54Packages php82Packages;
 
@@ -195,7 +202,8 @@ in rec {
       };
 
       inherit (pkgs) hadolint;
-    in [
+    in
+    [
       # Languages
       nodePackages.typescript
       pkgs.nodejs-slim
@@ -224,7 +232,7 @@ in rec {
       pkgs.alejandra
       pkgs.black
       pkgs.eslint_d
-      pkgs.nixfmt
+      pkgs.nixfmt-rfc-style
       pkgs.nodePackages.prettier
       pkgs.stylua
       pkgs.yamlfmt
@@ -247,28 +255,33 @@ in rec {
     EOF
   '';
 
-  mkNeovim = { system }:
+  mkNeovim =
+    { system }:
     let
       inherit (pkgs) lib neovim;
       extraPackages = mkExtraPackages { inherit system; };
       pkgs = legacyPackages.${system};
       start = mkNeovimPlugins { inherit system; };
-    in neovim.override {
+    in
+    neovim.override {
       configure = {
         customRC = mkExtraConfig;
-        packages.main = { inherit start; };
+        packages.main = {
+          inherit start;
+        };
       };
 
-      extraMakeWrapperArgs =
-        ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
+      extraMakeWrapperArgs = ''--suffix PATH : "${lib.makeBinPath extraPackages}"'';
     };
 
-  mkHomeManager = { system }:
+  mkHomeManager =
+    { system }:
     let
       extraConfig = mkExtraConfig;
       extraPackages = mkExtraPackages { inherit system; };
       plugins = mkNeovimPlugins { inherit system; };
-    in {
+    in
+    {
       inherit extraConfig extraPackages plugins;
 
       enable = true;
