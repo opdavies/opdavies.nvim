@@ -2,9 +2,6 @@ local configs = require "nvim-treesitter.configs"
 local context = require "treesitter-context"
 local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
 
-local map = require("opdavies.keymap").map
-local nmap = require("opdavies.keymap").nmap
-
 configs.setup {
   autotag = {
     enable = true,
@@ -121,17 +118,19 @@ configs.setup {
   },
 }
 
-nmap { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<CR>" }
-nmap { "<leader>tp", "<cmd>TSPlaygroundToggle<CR>" }
+local set = vim.keymap.set
+
+set("n", "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<CR>")
+set("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>")
 
 -- vim way: ; goes to the direction you were moving.
-map { { "n", "o", "x" }, ";", ts_repeat_move.repeat_last_move }
-map { { "n", "o", "x" }, ",", ts_repeat_move.repeat_last_move_opposite }
+set({ "n", "o", "x" }, ";", ts_repeat_move.repeat_last_move)
+set({ "n", "o", "x" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
 -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-map { { "n", "o", "x" }, "f", ts_repeat_move.builtin_f }
-map { { "n", "o", "x" }, "F", ts_repeat_move.builtin_F }
-map { { "n", "o", "x" }, "t", ts_repeat_move.builtin_t }
-map { { "n", "o", "x" }, "T", ts_repeat_move.builtin_T }
+set({ "n", "o", "x" }, "f", ts_repeat_move.builtin_f)
+set({ "n", "o", "x" }, "F", ts_repeat_move.builtin_F)
+set({ "n", "o", "x" }, "t", ts_repeat_move.builtin_t)
+set({ "n", "o", "x" }, "T", ts_repeat_move.builtin_T)
 
 context.setup { enable = true }
