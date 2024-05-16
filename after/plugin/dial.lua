@@ -1,9 +1,5 @@
-local status_ok, dial_config = pcall(require, "dial.config")
-if not status_ok then
-  return
-end
-
 local augend = require "dial.augend"
+local dial_config = require "dial.config"
 
 dial_config.augends:register_group {
   visual = {
@@ -43,10 +39,7 @@ dial_config.augends:register_group {
 
 local dial_map = require "dial.map"
 
-local nmap = require("opdavies.keymap").nmap
-local vmap = require("opdavies.keymap").vmap
-
-nmap { "<C-a>", dial_map.inc_normal "mygroup" }
-nmap { "<C-x>", dial_map.dec_normal "mygroup" }
-vmap { "<C-a>", dial_map.inc_normal "visual" }
-vmap { "<C-x>", dial_map.dec_normal "visual" }
+vim.keymap.set("n", "<C-a>", dial_map.inc_normal "mygroup")
+vim.keymap.set("n", "<C-x>", dial_map.dec_normal "mygroup")
+vim.keymap.set("v", "<C-a>", dial_map.inc_normal "visual")
+vim.keymap.set("v", "<C-x>", dial_map.dec_normal "visual")
