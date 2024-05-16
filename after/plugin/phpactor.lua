@@ -1,4 +1,2 @@
-local nmap = require("opdavies.keymap").nmap
-
-nmap { "<leader>pm", "<cmd>:PhpactorContextMenu<CR>" }
-nmap { "<leader>pn", "<cmd>:PhpactorClassNew<CR>" }
+vim.keymap.set("n", "<leader>pm", "<cmd>:PhpactorContextMenu<CR>")
+vim.keymap.set("n", "<leader>pn", "<cmd>:PhpactorClassNew<CR>")
