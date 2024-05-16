@@ -1,13 +1,7 @@
-if not pcall(require, "luasnip") then
-  return
-end
-
-local api = vim.api
-local fn = vim.fn
-
 local ls = require "luasnip"
 
 local snippet = ls.snippet
+local i = ls.insert_node
 local t = ls.text_node
 
 local shortcut = function(val)
@@ -37,8 +31,8 @@ end
 
 local snippets = {}
 
-for _, ft_path in ipairs(api.nvim_get_runtime_file("lua/opdavies/snippets/ft/*.lua", true)) do
-  local ft = fn.fnamemodify(ft_path, ":t:r")
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/opdavies/snippets/ft/*.lua", true)) do
+  local ft = vim.fn.fnamemodify(ft_path, ":t:r")
   snippets[ft] = make(loadfile(ft_path)())
 
   ls.add_snippets(ft, snippets[ft])
@@ -56,42 +50,29 @@ ls.config.set_config {
   updateevents = "TextChanged,TextChangedI",
 }
 
-local imap = require("opdavies.keymap").imap
-local map = require("opdavies.keymap").map
-local nmap = require("opdavies.keymap").nmap
-
 -- Expand the current item or just to the next item within the snippet.
-map {
-  { "i", "s" },
-  "<c-k>",
-  function()
-    if ls.expand_or_jumpable() then
-      ls.expand_or_jump()
-    end
-  end,
-  { silent = true },
-}
+vim.keymap.set({ "i", "s" }, "<c-k>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
 
 -- Jump backwards.
-map {
-  { "i", "s" },
-  "<c-j>",
-  function()
-    if ls.jumpable(-1) then
-      ls.jump(-1)
-    end
-  end,
-  { silent = true },
-}
+vim.keymap.set({ "i", "s" }, "<c-j>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
 
 -- Select within a list of options.
-imap {
-  "<c-l>",
-  function()
-    if ls.choice_active() then
-      ls.change_choice(1)
-    end
-  end,
-}
+vim.keymap.set("i", "<c-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
 
-nmap { "<leader><leader>s", "<cmd>source ~/Code/github.com/opdavies/dotfiles/config/neovim/after/plugin/luasnip.lua<CR>" }
+vim.keymap.set(
+  "n",
+  "<leader><leader>s",
+  "<cmd>source ~/Code/github.com/opdavies/dotfiles/config/neovim/after/plugin/luasnip.lua<CR>"
+)
