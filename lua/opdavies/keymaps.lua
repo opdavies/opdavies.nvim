@@ -1,74 +1,69 @@
-local keymap = require "opdavies.keymap"
+local set = vim.keymap.set
 
-local imap = keymap.imap
-local nmap = keymap.nmap
-local vmap = keymap.vmap
-local xmap = keymap.xmap
-
-nmap { "<Leader>so", ":call opdavies#save_and_exec()<CR>" }
+set("n", "<Leader>so", ":call opdavies#save_and_exec()<CR>")
 
 -- Format paragraphs to an 80 character line length.
-nmap { "<Leader>g", "gqap" }
-xmap { "<Leader>g", "gqa" }
+set("n", "<Leader>g", "gqap")
+set("x", "<Leader>g", "gqa")
 
 -- Make the current file executable
-nmap { "<Leader>x", ":!chmod +x %<Cr>" }
+set("n", "<Leader>x", ":!chmod +x %<Cr>")
 
 -- Yank from the current column to the end of the line
-nmap { "Y", "yg$" }
+set("n", "Y", "yg$")
 
 -- Keep things centred
-nmap { "n", "nzzzv" }
-nmap { "N", "Nzzzv" }
+set("n", "n", "nzzzv")
+set("n", "N", "Nzzzv")
 
 -- Disable arrow keys
-vmap { "<down>", "<nop>" }
-vmap { "<left>", "<nop>" }
-vmap { "<right>", "<nop>" }
-vmap { "<up>", "<nop>" }
+set("v", "<down>", "<nop>")
+set("v", "<left>", "<nop>")
+set("v", "<right>", "<nop>")
+set("v", "<up>", "<nop>")
 
-nmap { "<C-f>", ":silent !tmux neww t<CR>", { noremap = true, silent = true } }
+set("n", "<C-f>", ":silent !tmux neww t<CR>", { noremap = true, silent = true })
 
 -- Easy insertion of a trailing ; or , from insert mode
-imap { ",,", "<Esc>A,<Esc>" }
-imap { ";;", "<Esc>A;<Esc>" }
+set("i", ",,", "<Esc>A,<Esc>")
+set("i", ";;", "<Esc>A;<Esc>")
 
-nmap { "ga", "<Plug>(EasyAlign)" }
-xmap { "ga", "<Plug>(EasyAlign)" }
+set("n", "ga", "<Plug>(EasyAlign)")
+set("x", "ga", "<Plug>(EasyAlign)")
 
 -- Focus on the current buffer.
-nmap { "<leader>-", ":wincmd _<cr>:wincmd |<cr>", { noremap = true, silent = true } }
+set("n", "<leader>-", ":wincmd _<cr>:wincmd |<cr>", { noremap = true, silent = true })
 
 -- Automatically resize buffers.
-nmap { "<leader>=", ":wincmd =<cr>", { noremap = true, silent = true } }
+set("n", "<leader>=", ":wincmd =<cr>", { noremap = true, silent = true })
 
 -- Move line(s) up and down.
 local opts = { noremap = true, silent = true }
-imap { "<M-j>", "<Esc>:m .+1<CR>==gi", opts }
-imap { "<M-k>", "<Esc>:m .-2<CR>==gi", opts }
-nmap { "<M-j>", ":m .+1<CR>==", opts }
-nmap { "<M-k>", ":m .-2<CR>==", opts }
-vmap { "<M-j>", ":m '>+1<CR>gv=gv", opts }
-vmap { "<M-k>", ":m '<-2<CR>gv=gv", opts }
+set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", opts)
+set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", opts)
+set("n", "<M-j>", ":m .+1<CR>==", opts)
+set("n", "<M-k>", ":m .-2<CR>==", opts)
+set("v", "<M-j>", ":m '>+1<CR>gv=gv", opts)
+set("v", "<M-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- Re-centre when navigating.
-nmap { "#", "#zz", opts }
-nmap { "%", "%zz", opts }
-nmap { "*", "*zz", opts }
-nmap { "<C-d>", "<C-d>zz", opts }
-nmap { "<C-i>", "<C-i>zz", opts }
-nmap { "<C-o>", "<C-o>zz", opts }
-nmap { "<C-u>", "<C-u>zz", opts }
-nmap { "G", "Gzz", opts }
-nmap { "N", "Nzz", opts }
-nmap { "gg", "ggzz", opts }
-nmap { "n", "Nzz", opts }
-nmap { "{", "{zz", opts }
-nmap { "}", "}zz", opts }
+set("n", "#", "#zz", opts)
+set("n", "%", "%zz", opts)
+set("n", "*", "*zz", opts)
+set("n", "<C-d>", "<C-d>zz", opts)
+set("n", "<C-i>", "<C-i>zz", opts)
+set("n", "<C-o>", "<C-o>zz", opts)
+set("n", "<C-u>", "<C-u>zz", opts)
+set("n", "G", "Gzz", opts)
+set("n", "N", "Nzz", opts)
+set("n", "gg", "ggzz", opts)
+set("n", "n", "Nzz", opts)
+set("n", "{", "{zz", opts)
+set("n", "}", "}zz", opts)
 
 -- Clears hlsearch after doing a search, otherwise just does normal <CR> stuff
 vim.cmd [[ nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}() ]]
 
 -- Quicker macro playback.
-nmap { "Q", "@qj" }
-xmap { "Q", ":norm @q<CR>" }
+set("n", "Q", "@qj")
+set("x", "Q", ":norm @q<CR>")
