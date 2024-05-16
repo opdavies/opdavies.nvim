@@ -1,3 +1,1 @@
-local nmap = require("opdavies.keymap").nmap
-
-nmap { "<leader>u", vim.cmd.UndotreeToggle }
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
