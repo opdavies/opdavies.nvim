@@ -74,7 +74,7 @@ cmp.setup.cmdline({ "/", "?" }, {
   },
 })
 
-cmp.setup.filetype({ "sql" }, {
+cmp.setup.filetype({ "mysql", "sql" }, {
   sources = {
     { name = "vim-dadbod-completion" },
     { name = "buffer" },
