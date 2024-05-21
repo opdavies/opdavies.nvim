@@ -15,6 +15,7 @@ InvalidArgumentException
 Kickstart
 Lando
 MySQL
+NGINX
 NixOS
 NodeInterface
 OpenTofu
@@ -47,5 +48,6 @@ param
 rebase
 rebasing
 src
+wildcard
 worktree
 worktrees
