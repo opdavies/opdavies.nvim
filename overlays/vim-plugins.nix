@@ -20,16 +20,6 @@ final: prev: {
       };
     };
 
-    vim-heritage = final.vimUtils.buildVimPlugin {
-      name = "vim-heritage";
-      src = final.fetchFromGitHub {
-        owner = "jessarcher";
-        repo = "vim-heritage";
-        rev = "cffa05c78c0991c998adc4504d761b3068547db6";
-        sha256 = "Lebe5V1XFxn4kSZ+ImZ69Vst9Nbc0N7eA9IzOCijFS0=";
-      };
-    };
-
     vim-textobj-xmlattr = final.vimUtils.buildVimPlugin {
       name = "vim-textobj-xmlattr";
       src = final.fetchFromGitHub {

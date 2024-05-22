@@ -51,7 +51,6 @@ rec {
     [
       vimPlugins.tabline-vim
       vimPlugins.vim-caser
-      vimPlugins.vim-heritage
       vimPlugins.vim-textobj-xmlattr
       vimPlugins.vim-zoom
 
