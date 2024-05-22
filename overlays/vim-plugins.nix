@@ -1,15 +1,5 @@
 final: prev: {
   vimPlugins = prev.vimPlugins // {
-    nvim-tmux-navigation = final.vimUtils.buildVimPlugin {
-      name = "nvim-tmux-navigation";
-      src = final.fetchFromGitHub {
-        owner = "alexghergh";
-        repo = "nvim-tmux-navigation";
-        rev = "4898c98702954439233fdaf764c39636681e2861";
-        sha256 = "CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=";
-      };
-    };
-
     tabline-vim = final.vimUtils.buildVimPlugin {
       name = "tabline-vim";
       src = final.fetchFromGitHub {
