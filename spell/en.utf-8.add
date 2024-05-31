@@ -1,4 +1,5 @@
 Ansible
+Behat
 Bluecheese
 CMSes
 Centarro
@@ -24,6 +25,7 @@ PHPUnit
 PostBuilder
 PostNodeRepository
 Pulumi
+SHA
 SQLSTATE
 SQLite
 Sculpin
@@ -48,6 +50,7 @@ param
 rebase
 rebasing
 src
+stylesheets
 wildcard
 worktree
 worktrees
