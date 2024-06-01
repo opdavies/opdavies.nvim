@@ -67,3 +67,9 @@ vim.cmd [[ nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}() ]]
 -- Quicker macro playback.
 set("n", "Q", "@qj")
 set("x", "Q", ":norm @q<CR>")
+
+-- Easier navigation between splits.
+set("n", "<C-h>", "<C-w><C-h>")
+set("n", "<C-j>", "<C-w><C-j>")
+set("n", "<C-k>", "<C-w><C-k>")
+set("n", "<C-l>", "<C-w><C-l>")
