@@ -64,10 +64,10 @@ end
 require("neodev").setup {}
 
 local servers = {
-  bashls = {},
-  cssls = {},
-  gopls = {},
-  html = {},
+  bashls = true,
+  cssls = true,
+  gopls = true,
+  html = true,
   intelephense = {
     filetypes = { "php", "module", "test", "inc" },
   },
@@ -96,8 +96,8 @@ local servers = {
       },
     },
   },
-  marksman = {},
-  nil_ls = {},
+  marksman = true,
+  nil_ls = true,
   tailwindcss = {
     filetypes = { "html", "javascript", "twig", "typescript", "vue" },
 
@@ -109,9 +109,9 @@ local servers = {
       },
     },
   },
-  terraformls = {},
-  tsserver = {},
-  vuels = {},
+  terraformls = true,
+  tsserver = true,
+  vuels = true,
   yamlls = {
     settings = {
       yaml = {
@@ -123,14 +123,16 @@ local servers = {
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-for server_name in pairs(servers) do
-  local server = servers[server_name] or {}
+for server_name, config in pairs(servers) do
+  if config == true then
+    config = {}
+  end
 
   lspconfig[server_name].setup {
     capabilities = capabilities,
-    filetypes = server.filetypes,
+    filetypes = config.filetypes,
     on_attach = custom_attach,
-    settings = server.settings,
+    settings = config.settings,
   }
 end
 
