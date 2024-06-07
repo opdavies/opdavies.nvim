@@ -1,1 +1,3 @@
 Move phpactor configuration from https://github.com/opdavies/dotfiles.nix
+Limit the number of completion results returned from Tailwind CSS?
+Add https://github.com/marcoroth/stimulus-lsp, but it's not available in nixpkgs. (https://github.com/NixOS/nixpkgs/issues/318120)
