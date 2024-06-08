@@ -70,6 +70,7 @@ rec {
       vimPlugins.vim-highlightedyank
       vimPlugins.vim-just
       vimPlugins.vim-nix
+      vimPlugins.vim-projectionist
       vimPlugins.nvim-spectre
       vimPlugins.vim-obsession
       vimPlugins.vim-pasta
