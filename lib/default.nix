@@ -50,7 +50,7 @@ rec {
     in
     [
       vimPlugins.tabline-vim
-      vimPlugins.vim-caser
+      vimPlugins.vim-abolish
       vimPlugins.vim-textobj-xmlattr
       vimPlugins.vim-zoom
 
