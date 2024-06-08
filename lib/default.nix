@@ -34,7 +34,6 @@ rec {
     { system }:
     let
       inherit (pkgs) vimPlugins;
-      inherit (pkgs.vimUtils) buildVimPlugin;
 
       pkgs = import inputs.nixpkgs {
         inherit system;
