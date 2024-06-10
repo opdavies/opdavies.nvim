@@ -13,6 +13,12 @@ conform.setup {
   },
 }
 
-vim.keymap.set("n", "<leader>f", function()
-  conform.format { lsp_fallback = true, async = false, timeout_ms = 500 }
-end)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function(args)
+    conform.format {
+      bufnr = args.buf,
+      lsp_fallback = true,
+      quiet = true,
+    }
+  end,
+})
