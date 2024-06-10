@@ -6,7 +6,7 @@ conform.setup {
     javascript = { { "prettierd", "prettier" } },
     just = { "just" },
     lua = { "stylua" },
-    nix = { { "nixfmt", "alejandra" } },
+    nix = { { "nixfmt" } },
     php = { { "php_cs_fixer", "phpcbf" } },
     terraform = { "terraform_fmt" },
     yaml = { "yamlfmt" },

@@ -227,7 +227,6 @@ rec {
       pkgs.terraform-ls
 
       # Formatters
-      pkgs.alejandra
       pkgs.black
       pkgs.eslint_d
       pkgs.nixfmt-rfc-style
