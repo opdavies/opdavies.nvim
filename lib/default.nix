@@ -78,6 +78,7 @@ rec {
       vimPlugins.vim-sleuth
       vimPlugins.vim-terraform
       vimPlugins.vim-textobj-user
+      vimPlugins.vim-tmux-navigator
       vimPlugins.vim-unimpaired
 
       vimPlugins.treesj
