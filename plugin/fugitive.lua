@@ -1,5 +1,7 @@
 vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr><C-w>K")
-vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr><C-w>K")
+
+-- Open the ":Git" window in its own buffer, not a split.
+vim.keymap.set("n", "<leader>gs", "<cmd>0Git<cr>")
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*",
