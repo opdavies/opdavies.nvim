@@ -72,6 +72,7 @@ rec {
       vimPlugins.vim-nix
       vimPlugins.vim-projectionist
       vimPlugins.nvim-spectre
+      vimPlugins.vim-autoread
       vimPlugins.vim-obsession
       vimPlugins.vim-pasta
       vimPlugins.vim-repeat

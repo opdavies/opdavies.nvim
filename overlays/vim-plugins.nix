@@ -10,6 +10,16 @@ final: prev: {
       };
     };
 
+    vim-autoread = final.vimUtils.buildVimPlugin {
+      name = "vim-autoread";
+      src = final.fetchFromGitHub {
+        owner = "djoshea";
+        repo = "vim-autoread";
+        rev = "24061f84652d768bfb85d222c88580b3af138dab";
+        sha256 = "fSADjNt1V9jgAPjxggbh7Nogcxyisi18KaVve8j+c3w=";
+      };
+    };
+
     vim-textobj-xmlattr = final.vimUtils.buildVimPlugin {
       name = "vim-textobj-xmlattr";
       src = final.fetchFromGitHub {
