@@ -15,5 +15,8 @@ require("mini.move").setup {}
 
 require("mini.operators").setup {}
 
+require("mini.statusline").setup {
+  use_icons = false,
+}
 
 require("mini.surround").setup {}
