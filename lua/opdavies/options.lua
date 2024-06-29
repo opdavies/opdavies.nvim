@@ -13,6 +13,7 @@ local settings = {
   hidden = false,
   hlsearch = false,
   inccommand = "split",
+  laststatus = 3,
   linebreak = true,
   list = true,
   mouse = "",
@@ -45,7 +46,6 @@ end
 vim.opt.backupdir:remove "." -- keep backups out of the current directory
 vim.opt.clipboard:append "unnamedplus"
 vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
-vim.opt.laststatus = 3
 vim.opt.listchars:append {
   trail = "·",
 }
