@@ -1,65 +1,5 @@
-local has_lsp, lspconfig = pcall(require, "lspconfig")
-if not has_lsp then
-  return
-end
-
+local lspconfig = require "lspconfig"
 local nvim_status = require "lsp-status"
-
-local imap = require("opdavies.keymap").imap
-local nmap = require("opdavies.keymap").nmap
-
-local telescope_mapper = require "opdavies.telescope.mappings"
-
-local buf_nnoremap = function(opts)
-  opts.buffer = 0
-  nmap(opts)
-end
-
-local buf_inoremap = function(opts)
-  opts.buffer = 0
-  imap(opts)
-end
-
-local custom_attach = function(client)
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-
-  nvim_status.on_attach(client)
-
-  buf_inoremap { "<C-k>", vim.lsp.buf.signature_help }
-  buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
-  buf_nnoremap { "<leader>d", vim.diagnostic.open_float }
-  buf_nnoremap { "<leader>rn", vim.lsp.buf.rename }
-  buf_nnoremap { "<leader>rr", "<cmd>LspRestart<cr>" }
-  buf_nnoremap { "[d", vim.diagnostic.goto_prev }
-  buf_nnoremap { "]d", vim.diagnostic.goto_next }
-
-  local handlers = require "opdavies.lsp.handlers"
-
-  buf_nnoremap { "gD", vim.lsp.buf.declaration }
-  buf_nnoremap { "gd", handlers.definition }
-  buf_nnoremap { "gi", vim.lsp.buf.implementation }
-  buf_nnoremap { "gT", vim.lsp.buf.type_definition }
-
-  if filetype ~= "lua" then
-    buf_nnoremap { "K", vim.lsp.buf.hover }
-  end
-
-  telescope_mapper("<leader>dl", "diagnostics", nil, true)
-
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
-    vim.cmd [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]
-  end
-
-  -- Attach any filetype specific options to the client
-  -- filetype_attach[filetype](client)
-end
 
 require("neodev").setup {}
 
@@ -128,12 +68,11 @@ for server_name, config in pairs(servers) do
     config = {}
   end
 
-  lspconfig[server_name].setup {
+  config = vim.tbl_deep_extend("force", {}, {
     capabilities = capabilities,
-    filetypes = config.filetypes,
-    on_attach = custom_attach,
-    settings = config.settings,
-  }
+  }, config)
+
+  lspconfig[server_name].setup(config)
 end
 
 vim.diagnostic.config {
@@ -143,3 +82,31 @@ vim.diagnostic.config {
   update_in_insert = false,
   virtual_text = { spacing = 2 },
 }
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    local builtin = require "telescope.builtin"
+
+    -- buf_inoremap { "<C-k>", vim.lsp.buf.signature_help }
+    -- buf_nnoremap { "<leader>ca", vim.lsp.buf.code_action }
+    -- buf_nnoremap { "<leader>d", vim.diagnostic.open_float }
+    -- buf_nnoremap { "<leader>rn", vim.lsp.buf.rename }
+    -- buf_nnoremap { "<leader>rr", "<cmd>LspRestart<cr>" }
+    -- buf_nnoremap { "[d", vim.diagnostic.goto_prev }
+    -- buf_nnoremap { "]d", vim.diagnostic.goto_next }
+
+    -- buf_nnoremap { "gD", vim.lsp.buf.declaration }
+    -- buf_nnoremap { "gd", handlers.definition }
+    -- buf_nnoremap { "gi", vim.lsp.buf.implementation }
+    -- buf_nnoremap { "gT", vim.lsp.buf.type_definition }
+
+    vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
+    vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
+    vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+
+    vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
+    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
+  end,
+})
