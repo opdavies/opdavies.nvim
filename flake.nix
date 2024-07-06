@@ -16,15 +16,12 @@
       lib = import ./lib { inherit inputs self; };
 
       inherit (lib) mkNeovim mkVimPlugin;
-      inherit (pkgs) mkShell;
 
       default = mkVimPlugin { inherit system; };
       neovim = mkNeovim { inherit system; };
     in
     {
       inherit lib;
-
-      devShells.${system}.default = mkShell { buildInputs = with pkgs; [ just ]; };
 
       formatter.${system} = pkgs.nixfmt-rfc-style;
 
