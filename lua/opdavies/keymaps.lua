@@ -73,3 +73,14 @@ set("n", "<C-h>", "<C-w><C-h>")
 set("n", "<C-j>", "<C-w><C-j>")
 set("n", "<C-k>", "<C-w><C-k>")
 set("n", "<C-l>", "<C-w><C-l>")
+
+set("v", "Q", "<nop>")
+
+set("v", "J", ":m '>+1<CR>gvrgv")
+set("v", "K", ":m '<-2<CR>gv=gv")
+
+set("n", "J", "mzJ`z")
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
+set("n", "n", "nzzzv")
+set("n", "N", "Nzzzv")
