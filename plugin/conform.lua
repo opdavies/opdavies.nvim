@@ -11,14 +11,9 @@ conform.setup {
     terraform = { "terraform_fmt" },
     yaml = { "yamlfmt" },
   },
-}
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function(args)
-    conform.format {
-      bufnr = args.buf,
-      lsp_fallback = false,
-      quiet = true,
-    }
-  end,
-})
+  format_on_save = {
+    lsp_fallback = false,
+    quiet = true,
+  },
+}
