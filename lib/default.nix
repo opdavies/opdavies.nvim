@@ -257,12 +257,10 @@ rec {
   mkNeovim =
     { system }:
     let
+      inherit (pkgs) lib neovim;
       extraPackages = mkExtraPackages { inherit system; };
       pkgs = legacyPackages.${system};
-      pkgsUnstable = inputs.nixpkgs-unstable.legacyPackages.${system};
       start = mkNeovimPlugins { inherit system; };
-      inherit (pkgs) lib;
-      inherit (pkgsUnstable) neovim;
     in
     neovim.override {
       configure = {
