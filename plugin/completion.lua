@@ -152,8 +152,4 @@ vim.keymap.set("i", "<c-l>", function()
   end
 end)
 
-vim.keymap.set(
-  "n",
-  "<leader><leader>s",
-  "<cmd>source ~/Code/personal/opdavies.nvim/after/plugin/luasnip.lua<CR>"
-)
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/Code/opdavies.nvim/after/plugin/luasnip.lua<CR>")
