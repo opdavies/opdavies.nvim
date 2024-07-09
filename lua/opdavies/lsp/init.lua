@@ -1,16 +1,26 @@
 local lspconfig = require "lspconfig"
 local nvim_status = require "lsp-status"
 
+local handlers = require "opdavies.lsp.handlers"
+
 require("neodev").setup {}
 
 local servers = {
   bashls = true,
-  cssls = true,
+
+  cssls = {
+    on_attach = function(client, bufnr)
+      vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(handlers.on_publish_diagnostics, {})
+    end,
+  },
+
   gopls = true,
   html = true,
+
   intelephense = {
     filetypes = { "php", "module", "test", "inc" },
   },
+
   lua_ls = {
     settings = {
       Lua = {
@@ -36,8 +46,10 @@ local servers = {
       },
     },
   },
+
   marksman = true,
   nil_ls = true,
+
   tailwindcss = {
     filetypes = { "html", "javascript", "twig", "typescript", "vue" },
 
@@ -49,9 +61,11 @@ local servers = {
       },
     },
   },
+
   terraformls = true,
   tsserver = true,
   vuels = true,
+
   yamlls = {
     settings = {
       yaml = {

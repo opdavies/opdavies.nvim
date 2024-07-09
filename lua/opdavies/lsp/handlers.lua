@@ -1,5 +1,15 @@
 local M = {}
 
+local function should_remove_diagnostic(messages_to_filter, message)
+  for _, filter_message in ipairs(messages_to_filter) do
+    if message:match(filter_message) then
+      return true
+    end
+  end
+
+  return false
+end
+
 M.definition = function()
   local params = vim.lsp.util.make_position_params()
 
@@ -30,6 +40,29 @@ M.definition = function()
     vim.lsp.handlers["textDocument/definition"](err, result, ctx, config)
     vim.cmd [[normal! zz]]
   end)
+end
+
+M.on_publish_diagnostics = function(_, result, ctx, config)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+
+  if client.name == "cssls" then
+    local filtered_diagnostics = {}
+
+    local messages_to_filter = {
+      "Unknown at rule @apply",
+      "Unknown at rule @tailwind",
+    }
+
+    for _, diagnostic in ipairs(result.diagnostics) do
+      if not should_remove_diagnostic(messages_to_filter, diagnostic.message) then
+        table.insert(filtered_diagnostics, diagnostic)
+      end
+    end
+
+    result.diagnostics = filtered_diagnostics
+  end
+
+  vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
 end
 
 return M
