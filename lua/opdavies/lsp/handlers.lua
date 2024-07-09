@@ -53,6 +53,9 @@ M.on_publish_diagnostics = function(_, result, ctx, config)
       "Unknown at rule @tailwind",
     }
 
+    -- For each diagnostic, ensure its mesages doesn't match one I want to
+    -- ignore before adding it to the result. If it matches, don't add it to the
+    -- result and it won't be shown.
     for _, diagnostic in ipairs(result.diagnostics) do
       if not should_remove_diagnostic(messages_to_filter, diagnostic.message) then
         table.insert(filtered_diagnostics, diagnostic)
