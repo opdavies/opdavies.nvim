@@ -3,6 +3,7 @@ vim.filetype.add {
     inc = "php",
     install = "php",
     module = "php",
+    pcss = "scss",
     theme = "php",
   },
 }
