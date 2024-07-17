@@ -42,4 +42,6 @@ vim.keymap.set("n", "<space>fi", search_all_files)
 vim.keymap.set("n", "<space>fk", builtin.keymaps)
 vim.keymap.set("n", "<space>ft", builtin.git_files)
 
+vim.keymap.set("n", "<space>ds", builtin.lsp_document_symbols)
+
 vim.keymap.set("n", "<space>gw", builtin.grep_string)
