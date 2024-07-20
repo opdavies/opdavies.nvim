@@ -1,5 +1,6 @@
 local opt = vim.opt_local
 
+opt.spell = true
 opt.wrap = true
 
 local cmp = require "cmp"
