@@ -1,8 +1,10 @@
+ANP
 AWS
 Acquia
 Ansible
 Appnovation
 Architected
+BAU
 Behat
 Bluecheese
 CMSes
@@ -21,11 +23,13 @@ Drupaler
 Drush
 FPM
 FTSE
+HDN
 HashiCorp
 InvalidArgumentException
 Inviqa
 Kickstart
 Lando
+Laravel
 Linode
 Magento
 Microserve
@@ -36,10 +40,12 @@ Nginx
 NixOS
 NodeInterface
 Nomensa
+OpenID
 OpenTofu
 PDOException
 PHPStan
 PHPUnit
+Packagist
 PostBuilder
 PostNodeRepository
 Pulumi
@@ -47,6 +53,7 @@ S3
 SHA
 SQLSTATE
 SQLite
+SSO
 Sculpin
 Silex
 Sylius
@@ -62,6 +69,7 @@ architected
 assertContainsOnlyInstancesOf
 assertSame
 bootcamp
+contrib
 drupal
 eCommerce
 foreach
@@ -76,6 +84,7 @@ osCommerce
 param
 rebase
 rebasing
+roadmapping
 src
 stylesheets
 testbot
@@ -83,5 +92,3 @@ wildcard
 worktree
 worktrees
 www
-Laravel
-Packagist
