@@ -24,6 +24,9 @@ set("v", "<up>", "<nop>")
 
 set("n", "<C-f>", ":silent !tmux neww t<CR>", { noremap = true, silent = true })
 
+-- Easily switch back to visual mode.
+set("i", "jk", "<Esc>")
+
 -- Easy insertion of a trailing ; or , from insert mode
 set("i", ",,", "<Esc>A,<Esc>")
 set("i", ";;", "<Esc>A;<Esc>")
