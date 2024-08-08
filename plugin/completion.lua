@@ -123,6 +123,11 @@ ls.add_snippets("js", snippets.javascript)
 ls.add_snippets("typescript", snippets.javascript)
 ls.add_snippets("vue", snippets.javascript)
 
+-- Include any snippets to use in presentations.
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/opdavies/snippets/talks/*.lua", true)) do
+  loadfile(ft_path)()
+end
+
 require("luasnip.loaders.from_vscode").lazy_load()
 
 ls.config.set_config {
