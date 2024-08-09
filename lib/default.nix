@@ -18,14 +18,15 @@ rec {
         rm -rf $out/.envrc
         rm -rf $out/.gitignore
         rm -rf $out/.luacheckrc
-        rm -rf $out/.tmuxinator.yaml
+        rm -rf $out/.markdownlint.yaml
         rm -rf $out/CHANGELOG.md
         rm -rf $out/flake.lock
         rm -rf $out/flake.nix
-        rm -rf $out/justfile
         rm -rf $out/lib
+        rm -rf $out/overlays
         rm -rf $out/run
         rm -rf $out/stylua.toml
+        rm -rf $out/todo
       '';
       src = ../.;
     };
