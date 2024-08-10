@@ -35,6 +35,7 @@ Magento
 Microserve
 MySQL
 NGINX
+Neovim
 Netlify
 Nginx
 NixOS
@@ -46,6 +47,7 @@ PDOException
 PHPStan
 PHPUnit
 Packagist
+PhpStorm
 PostBuilder
 PostNodeRepository
 Pulumi
@@ -63,6 +65,7 @@ TermInterface
 Themers
 TypeScript
 Ubercart
+VSCode
 WCAG
 Wellbeing
 architected
@@ -70,6 +73,7 @@ assertContainsOnlyInstancesOf
 assertSame
 bootcamp
 contrib
+dotfiles
 drupal
 eCommerce
 foreach
@@ -87,8 +91,10 @@ rebase
 rebasing
 roadmapping
 src
+stylesheet
 stylesheets
 testbot
+tmux
 wildcard
 worktree
 worktrees
