@@ -12,8 +12,11 @@ map("n", "<leader>ts", ":TestSuite<CR>", options)
 
 vim.cmd [[
   let test#echo_command = 0
-  let test#neovim#start_normal = 1
-  let test#strategy = "vimux"
+  let test#strategy = "neovim_sticky"
+
+  let g:test#neovim_sticky#kill_previous = 1
+  let g:test#neovim_sticky#reopen_window = 1
+  let g:test#preserve_screen = 0
 
   let test#php#phpunit#executable = './run test'
   let test#php#phpunit#options = '--colors=always --testdox'
