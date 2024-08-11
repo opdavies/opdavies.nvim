@@ -187,6 +187,10 @@ rec {
       # Themes
       vimPlugins.catppuccin-nvim
 
+      vimPlugins.conf-vim
+      vimPlugins.edit-alternate-vim
+      vimPlugins.standard-vim
+
       # Configuration.
       opdavies-nvim
     ];

@@ -1,5 +1,35 @@
 final: prev: {
   vimPlugins = prev.vimPlugins // {
+    conf-vim = final.vimUtils.buildVimPlugin {
+      name = "conf-vim";
+      src = final.fetchFromGitHub {
+        owner = "tjdevries";
+        repo = "conf.vim";
+        rev = "master";
+        sha256 = "AjiTJsoim0BAnyfqk1IQzNsa6jhFM2+A66E7q9sJqz0=";
+      };
+    };
+
+    edit-alternate-vim = final.vimUtils.buildVimPlugin {
+      name = "edit-alternate-vim";
+      src = final.fetchFromGitHub {
+        owner = "tjdevries";
+        repo = "edit_alternate.vim";
+        rev = "master";
+        sha256 = "mEKnqYAhgrdxPRoKf4S4yYecdFIHGg8bDxpqPuC1+S4=";
+      };
+    };
+
+    standard-vim = final.vimUtils.buildVimPlugin {
+      name = "standard-vim";
+      src = final.fetchFromGitHub {
+        owner = "tjdevries";
+        repo = "standard.vim";
+        rev = "master";
+        sha256 = "9VwkvV1Dv6cE4uDkPp36DozjWJOclDR883yDMYw000E=";
+      };
+    };
+
     tabline-vim = final.vimUtils.buildVimPlugin {
       name = "tabline-vim";
       src = final.fetchFromGitHub {
