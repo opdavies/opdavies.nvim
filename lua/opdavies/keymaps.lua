@@ -87,3 +87,23 @@ set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
+
+-- Easily access project-specific notes.
+set("n", "<leader>en", function()
+  if vim.fn.filereadable ".ignored/notes" == 1 then
+    vim.cmd "tabnew .ignored/notes"
+  else
+    vim.cmd "tabnew notes"
+  end
+end)
+
+-- Easily access project-specific todos.
+set("n", "<leader>et", function()
+  if vim.fn.filereadable ".ignored/todo" == 1 then
+    vim.cmd "tabnew .ignored/todo"
+  else
+    vim.cmd "tabnew todo"
+  end
+end)
+
+set("n", "<leader>ec", ":edit composer.json")
