@@ -28,6 +28,7 @@ HDN
 HashiCorp
 InvalidArgumentException
 Inviqa
+JSON
 Kickstart
 Lando
 Laravel
@@ -68,6 +69,7 @@ TypeScript
 Ubercart
 VSCode
 WCAG
+WSL
 Wellbeing
 architected
 assertContainsOnlyInstancesOf
@@ -82,6 +84,7 @@ getPost
 hotfix
 isNotPublished
 isPublished
+localhost
 mentees
 nodeStorage
 opdavies
