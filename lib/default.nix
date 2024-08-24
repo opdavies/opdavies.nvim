@@ -112,6 +112,7 @@ rec {
         p.javascript
         p.json
         p.just
+        p.kdl
         p.lua
         p.luadoc
         p.make
