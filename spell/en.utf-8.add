@@ -35,6 +35,7 @@ Laravel
 Linode
 Magento
 Microserve
+Mischa
 MySQL
 NGINX
 Neovim
@@ -71,6 +72,9 @@ VSCode
 WCAG
 WSL
 Wellbeing
+ZSH
+Zellij
+Zettelkasten
 architected
 assertContainsOnlyInstancesOf
 assertSame
@@ -95,6 +99,7 @@ rebase
 rebasing
 roadmapping
 rst2pdf
+rwxrob
 src
 stylesheet
 stylesheets
