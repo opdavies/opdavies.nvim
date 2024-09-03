@@ -99,42 +99,43 @@ rec {
       vimPlugins.nvim-dap-virtual-text
 
       # Treesitter
-      (vimPlugins.nvim-treesitter.withPlugins (p: [
-        p.bash
-        p.comment
-        p.css
-        p.csv
-        p.dockerfile
-        p.gitattributes
-        p.gitignore
-        p.go
-        p.html
-        p.javascript
-        p.json
-        p.just
-        p.kdl
-        p.lua
-        p.luadoc
-        p.make
-        p.markdown
-        p.markdown_inline
-        p.nix
-        p.php
-        p.phpdoc
-        p.query
-        p.rst
-        p.scss
-        p.sql
-        p.terraform
-        p.tmux
-        p.twig
-        p.typescript
-        p.vim
-        p.vimdoc
-        p.vue
-        p.xml
-        p.yaml
-      ]))
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+        plugins: with plugins; [
+          bash
+          comment
+          css
+          csv
+          dockerfile
+          gitattributes
+          gitignore
+          go
+          html
+          javascript
+          json
+          kdl
+          lua
+          luadoc
+          make
+          markdown
+          markdown_inline
+          nix
+          php
+          phpdoc
+          query
+          rst
+          scss
+          sql
+          terraform
+          tmux
+          twig
+          typescript
+          vim
+          vimdoc
+          vue
+          xml
+          yaml
+        ]
+      ))
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-treesitter-textobjects
 
