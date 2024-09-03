@@ -42,8 +42,6 @@ rec {
         overlays = [ (import "${self}/overlays/vim-plugins.nix") ];
       };
 
-      pkgs2305 = inputs.nixpkgs-2305.legacyPackages.${system};
-
       opdavies-nvim = mkVimPlugin { inherit system; };
     in
     with pkgs.vimPlugins;
@@ -56,7 +54,6 @@ rec {
       gitsigns-nvim
       harpoon
       impatient-nvim
-      inputs.nixpkgs-2305.legacyPackages.${system}.rest-nvim
       mini-nvim
       neodev-nvim
       nvim-spectre
@@ -153,7 +150,6 @@ rec {
       cmp_luasnip
       lspkind-nvim
       nvim-cmp
-      pkgs2305.vimPlugins.phpactor
 
       # Snippets
       friendly-snippets
