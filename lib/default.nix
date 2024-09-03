@@ -34,8 +34,6 @@ rec {
   mkNeovimPlugins =
     { system }:
     let
-      inherit (pkgs) vimPlugins;
-
       pkgs = import inputs.nixpkgs {
         inherit system;
 
@@ -48,55 +46,56 @@ rec {
 
       opdavies-nvim = mkVimPlugin { inherit system; };
     in
+    with pkgs.vimPlugins;
     [
-      vimPlugins.tabline-vim
-      vimPlugins.vim-abolish
-      vimPlugins.vim-textobj-xmlattr
-      vimPlugins.vim-zoom
-
-      inputs.nixpkgs-2305.legacyPackages.${system}.vimPlugins.rest-nvim
-      vimPlugins.comment-nvim
-      vimPlugins.dial-nvim
-      vimPlugins.fidget-nvim
-      vimPlugins.gitsigns-nvim
-      vimPlugins.harpoon
-      vimPlugins.impatient-nvim
-      vimPlugins.mini-nvim
-      vimPlugins.neodev-nvim
-      vimPlugins.nvim-web-devicons
-      vimPlugins.oil-nvim
-      vimPlugins.refactoring-nvim
-      vimPlugins.undotree
-      vimPlugins.vim-eunuch
-      vimPlugins.vim-highlightedyank
-      vimPlugins.vim-just
-      vimPlugins.vim-nix
-      vimPlugins.nvim-spectre
-      vimPlugins.vim-autoread
-      vimPlugins.vim-obsession
-      vimPlugins.vim-pasta
-      vimPlugins.vim-repeat
-      vimPlugins.vim-sleuth
-      vimPlugins.vim-terraform
-      vimPlugins.vim-textobj-user
-      vimPlugins.vim-tmux-navigator
-      vimPlugins.vim-unimpaired
-
-      vimPlugins.treesj
+      comment-nvim
+      conf-vim
+      dial-nvim
+      edit-alternate-vim
+      fidget-nvim
+      gitsigns-nvim
+      harpoon
+      impatient-nvim
+      inputs.nixpkgs-2305.legacyPackages.${system}.rest-nvim
+      mini-nvim
+      neodev-nvim
+      nvim-spectre
+      nvim-web-devicons
+      oil-nvim
+      refactoring-nvim
+      standard-vim
+      tabline-vim
+      treesj
+      undotree
+      vim-abolish
+      vim-autoread
+      vim-eunuch
+      vim-highlightedyank
+      vim-just
+      vim-nix
+      vim-obsession
+      vim-pasta
+      vim-repeat
+      vim-sleuth
+      vim-terraform
+      vim-textobj-user
+      vim-textobj-xmlattr
+      vim-tmux-navigator
+      vim-unimpaired
+      vim-zoom
 
       # Testing
-      vimPlugins.vim-test
-      vimPlugins.vimux
+      vim-test
 
       # Git
-      vimPlugins.committia-vim
-      vimPlugins.diffview-nvim
-      vimPlugins.vim-fugitive
+      committia-vim
+      diffview-nvim
+      vim-fugitive
 
       # Debugging
-      vimPlugins.nvim-dap
-      vimPlugins.nvim-dap-ui
-      vimPlugins.nvim-dap-virtual-text
+      nvim-dap
+      nvim-dap-ui
+      nvim-dap-virtual-text
 
       # Treesitter
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (
@@ -136,61 +135,46 @@ rec {
           yaml
         ]
       ))
-      vimPlugins.nvim-treesitter-context
-      vimPlugins.nvim-treesitter-textobjects
+      nvim-treesitter-context
+      nvim-treesitter-textobjects
 
       # LSP, linting and formatting
-      vimPlugins.conform-nvim
-      vimPlugins.lsp-status-nvim
-      vimPlugins.nvim-lint
-      vimPlugins.nvim-lspconfig
+      conform-nvim
+      lsp-status-nvim
+      nvim-lint
+      nvim-lspconfig
 
       # Completion
+      cmp-buffer
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-path
+      cmp-treesitter
+      cmp_luasnip
+      lspkind-nvim
+      nvim-cmp
       pkgs2305.vimPlugins.phpactor
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-cmdline
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-path
-      vimPlugins.cmp-treesitter
-      vimPlugins.cmp_luasnip
-      vimPlugins.lspkind-nvim
-      vimPlugins.nvim-cmp
 
       # Snippets
-      vimPlugins.friendly-snippets
-      vimPlugins.luasnip
+      friendly-snippets
+      luasnip
 
       # Telescope
-      vimPlugins.plenary-nvim
-      vimPlugins.popup-nvim
-      vimPlugins.telescope-frecency-nvim
-      vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.telescope-live-grep-args-nvim
-      vimPlugins.telescope-nvim
-      vimPlugins.telescope-ui-select-nvim
+      plenary-nvim
+      popup-nvim
+      telescope-frecency-nvim
+      telescope-fzf-native-nvim
+      telescope-live-grep-args-nvim
+      telescope-nvim
+      telescope-ui-select-nvim
 
       # Databases
-      vimPlugins.vim-dadbod
-      vimPlugins.vim-dadbod-ui
-      vimPlugins.vim-dadbod-completion
-
-      vimPlugins.markdown-preview-nvim
-
-      # # Markdown
-      # {
-      #   plugin = vimPlugins.markdown-preview-nvim;
-      #   type = "lua";
-      #   config = ''
-      #     vim.g.mkdp_refresh_slow = 1
-      #   '';
-      # }
+      vim-dadbod
+      vim-dadbod-ui
+      vim-dadbod-completion
 
       # Themes
-      vimPlugins.catppuccin-nvim
-
-      vimPlugins.conf-vim
-      vimPlugins.edit-alternate-vim
-      vimPlugins.standard-vim
+      catppuccin-nvim
 
       # Configuration.
       opdavies-nvim
@@ -206,18 +190,20 @@ rec {
 
         config.allowUnfree = true;
       };
-
-      inherit (pkgs) hadolint;
     in
+    with pkgs;
     [
       # Languages
       nodePackages.typescript
-      pkgs.nodejs-slim
-      pkgs.php81
+      nodejs-slim
+      php81
 
       # Language servers
+      gopls
+      lua-language-server
       lua54Packages.luacheck
-      pkgs.marksman
+      marksman
+      nil
       nodePackages."@tailwindcss/language-server"
       nodePackages.bash-language-server
       nodePackages.dockerfile-language-server-nodejs
@@ -228,30 +214,27 @@ rec {
       nodePackages.vscode-langservers-extracted
       nodePackages.vue-language-server
       nodePackages.yaml-language-server
-      pkgs.gopls
-      pkgs.lua-language-server
-      pkgs.nil
-      pkgs.phpactor
-      pkgs.terraform-ls
+      phpactor
+      terraform-ls
 
       # Formatters
-      pkgs.black
-      pkgs.eslint_d
-      pkgs.nixfmt-rfc-style
-      pkgs.nodePackages.prettier
-      pkgs.stylua
-      pkgs.yamlfmt
+      black
+      eslint_d
+      nixfmt-rfc-style
+      nodePackages.prettier
+      stylua
+      yamlfmt
 
       # Tools
       hadolint
+      html-tidy
       nodePackages.jsonlint
       nodePackages.markdownlint-cli
       php82Packages.php-codesniffer
       php82Packages.phpstan
-      pkgs.html-tidy
-      pkgs.proselint
-      pkgs.shellcheck
-      pkgs.yamllint
+      proselint
+      shellcheck
+      yamllint
     ];
 
   mkExtraConfig = ''
