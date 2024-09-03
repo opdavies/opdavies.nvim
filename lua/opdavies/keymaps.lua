@@ -107,3 +107,19 @@ set("n", "<leader>et", function()
 end)
 
 set("n", "<leader>ec", ":edit composer.json")
+
+set("n", "<leader>sa", function()
+  local current_pos = vim.fn.getcurpos()
+
+  vim.cmd "normal! vi("
+  vim.cmd ":'<,'>sort"
+  vim.fn.setpos(".", current_pos)
+end)
+
+set("n", "<leader>sk", function()
+  local current_pos = vim.fn.getcurpos()
+
+  vim.cmd "normal! vi["
+  vim.cmd ":'<,'>sort"
+  vim.fn.setpos(".", current_pos)
+end)
