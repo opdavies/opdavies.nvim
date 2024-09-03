@@ -33,6 +33,14 @@ M.diagnostics = function()
   builtin.diagnostics { bufnr = 0 }
 end
 
+M.grep_bluecheese = function()
+  builtin.live_grep { cwd = "web/sites/default/themes/bluecheese" }
+end
+
+M.grep_drupalorg_theme = function()
+  builtin.live_grep { cwd = "web/themes/contrib/drupalorg_theme" }
+end
+
 M.search_all_files = function()
   builtin.find_files {
     find_command = { "rg", "--no-ignore", "--files" },
@@ -52,5 +60,8 @@ vim.keymap.set("n", "<space>dl", M.diagnostics)
 vim.keymap.set("n", "<space>ds", builtin.lsp_document_symbols)
 
 vim.keymap.set("n", "<space>gw", builtin.grep_string)
+
+vim.keymap.set("n", "<space>dgb", M.grep_bluecheese)
+vim.keymap.set("n", "<space>dgd", M.grep_drupalorg_theme)
 
 vim.keymap.set({ "n", "v" }, "<space>gw", builtin.grep_string)
