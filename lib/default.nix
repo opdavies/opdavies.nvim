@@ -141,6 +141,7 @@ rec {
 
       # Completion
       cmp-buffer
+      cmp-calc
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
