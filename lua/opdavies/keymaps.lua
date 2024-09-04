@@ -22,8 +22,6 @@ set("v", "<left>", "<nop>")
 set("v", "<right>", "<nop>")
 set("v", "<up>", "<nop>")
 
-set("n", "<C-f>", ":silent !tmux neww t<CR>", { noremap = true, silent = true })
-
 -- Easily switch back to visual mode.
 set("i", "jk", "<Esc>")
 

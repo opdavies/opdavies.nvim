@@ -77,7 +77,6 @@ rec {
       vim-terraform
       vim-textobj-user
       vim-textobj-xmlattr
-      vim-tmux-navigator
       vim-unimpaired
       vim-zoom
 
@@ -122,7 +121,6 @@ rec {
           scss
           sql
           terraform
-          tmux
           twig
           typescript
           vim
