@@ -60,6 +60,7 @@ rec {
       nvim-web-devicons
       oil-nvim
       refactoring-nvim
+      sort-nvim
       standard-vim
       tabline-vim
       treesj
