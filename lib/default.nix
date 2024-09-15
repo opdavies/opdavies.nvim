@@ -76,6 +76,7 @@ rec {
       vim-repeat
       vim-sleuth
       vim-terraform
+      vim-textobj-indent
       vim-textobj-user
       vim-textobj-xmlattr
       vim-unimpaired
