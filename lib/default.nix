@@ -75,6 +75,7 @@ rec {
       vim-pasta
       vim-repeat
       vim-sleuth
+      vim-sort-motion
       vim-terraform
       vim-textobj-indent
       vim-textobj-user
