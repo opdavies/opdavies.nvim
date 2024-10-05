@@ -32,8 +32,9 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "calc" },
     { name = "luasnip" },
+    { name = "buffer" },
+    { name = "calc" },
   },
 
   sorting = {
