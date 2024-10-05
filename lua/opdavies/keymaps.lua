@@ -16,11 +16,13 @@ set("n", "Y", "yg$")
 set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
 
--- Disable arrow keys
+-- Disable up and down arrow keys.
 set("v", "<down>", "<nop>")
-set("v", "<left>", "<nop>")
-set("v", "<right>", "<nop>")
 set("v", "<up>", "<nop>")
+
+-- Use the left and right arrow keys to change tabs.
+set("v", "<left>", "gT")
+set("v", "<right>", "gt")
 
 -- Easily switch back to visual mode.
 set("i", "jk", "<Esc>")
